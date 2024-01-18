@@ -4,8 +4,11 @@ const app = express();
 
 const PORT = 3000;
 
+const apiRouter = require(path.resolve(__dirname, './routers/api.js'))
+
 app.use(express.static(path.resolve(__dirname, '../build')));
 
+app.use('/api', apiRouter)
 
 app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
 
