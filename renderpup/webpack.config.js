@@ -26,8 +26,12 @@ const config = {
       {
         test: /.(css|scss)$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
-      }
+        use: ['style-loader', 'css-loader'],
+      },
+        {
+         test: /\.(png|j?g|svg|gif)?$/,
+         loader: 'file-loader',
+        }
     ]
   },
   plugins: [
