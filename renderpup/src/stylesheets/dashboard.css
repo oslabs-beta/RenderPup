@@ -1,0 +1,43 @@
+body {
+  background-color: #b9dafd;
+}
+
+h1{
+  text-align: center;
+  margin-bottom: 0;
+}
+
+h3 {
+  text-align: center;
+  font-style: italic;
+  margin-top: 0;
+}
+
+
+/* ------- app form ------- */
+.app-form {
+  text-align: center;
+}
+
+.app-input-field {
+  height: 2em;
+  width: 50%;
+  margin-left: 1em;
+  margin-right: 1em;
+  border-radius: 0.4em;
+  border: solid;
+  border-color: rgb(152, 152, 157);
+}
+
+.go-fetch-bttn {
+  background-color: rgb(82, 82, 234);
+  color: white;
+  border-radius: 0.4em;
+  padding: 0.6em;
+  border: none;
+}
+/* ------------------------ */
+
+#dogFetchingBall {
+  width: 5%;
+}
