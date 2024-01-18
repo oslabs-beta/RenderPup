@@ -4,6 +4,8 @@ const app = express();
 
 const PORT = 3000;
 
+app.use(express.json())
+
 const apiRouter = require(path.resolve(__dirname, './routers/api.js'))
 
 app.use(express.static(path.resolve(__dirname, '../build')));
