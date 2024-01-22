@@ -6,7 +6,10 @@ const dashboard = () => {
   return (
     <div>
       <h1> RenderPup</h1>
+      <div className="slogan">
+      <img id='dogFetchingBall' src={image_png} alt="dogFetchingBall" />
       <h3>Sniffing out performance and fetching results!</h3>
+      </div>
       <form className='app-form'>
         URL:
         <label>
@@ -14,7 +17,6 @@ const dashboard = () => {
         </label>
         <input className='go-fetch-bttn' type='submit' value='Go Fetch' />
       </form>
-      <img id='dogFetchingBall' src={image_png} alt="dogFetchingBall" />
     </div>
   );
 };

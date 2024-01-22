@@ -7,10 +7,12 @@ h1{
   margin-bottom: 0;
 }
 
-h3 {
-  text-align: center;
-  font-style: italic;
-  margin-top: 0;
+.slogan {
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  
+  
 }
 
 
