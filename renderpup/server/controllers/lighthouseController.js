@@ -1,14 +1,23 @@
-const lighthouse = require('lighthouse');
-const chromeLauncher = require('chrome-launcher');
+// const lighthouse = require('lighthouse');
+// const chromeLauncher = require('chrome-launcher');
 
+// import lighthouse from 'lighthouse';
+// import chromeLauncher from 'chrome-launcher';
 
+const importLighthouse = async () => {
+    const lighthouse = await import('lighthouse');
+    const chromeLauncher = await import('chrome-launcher');
+    return { lighthouse, chromeLauncher };
+  }
 const lighthouseController = {};
 
 lighthouseController.analyzeUrl = async (req, res) => {
     const runLighthouse = async (url) => {
+        const { lighthouse, chromeLauncher } = await importLighthouse();
         const chrome = await chromeLauncher.launch({ chromeFlags: ['--headless'] });
         const options = { logLevel: 'info', output: 'json', onlyCategories: ['performance'], port: chrome.port };
-        const runnerResult = await lighthouse(url, options);
+        console.log(lighthouse)
+        const runnerResult = await lighthouse.lighthouse(url, options);
         await chrome.kill();
 
         const audits = runnerResult.lhr.audits;
