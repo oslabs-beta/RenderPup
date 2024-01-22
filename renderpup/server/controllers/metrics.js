@@ -1,62 +1,51 @@
+const pool = require('../models/model')
+
 metricsController = {}
 
 metricsController.timeToFirstByte = async (req, res, next) => {
-
-  function Utf8ArrayToStr(array) {
-    console.log('hello')
-    var out, i, len, c;
-    var char2, char3;
-  
-    out = "";
-    len = array.length;
-    i = 0;
-    while(i < len) {
-    c = array[i++];
-    switch(c >> 4)
-    { 
-      case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:
-        // 0xxxxxxx
-        out += String.fromCharCode(c);
-        break;
-      case 12: case 13:
-        // 110x xxxx   10xx xxxx
-        char2 = array[i++];
-        out += String.fromCharCode(((c & 0x1F) << 6) | (char2 & 0x3F));
-        break;
-      case 14:
-        // 1110 xxxx  10xx xxxx  10xx xxxx
-        char2 = array[i++];
-        char3 = array[i++];
-        out += String.fromCharCode(((c & 0x0F) << 12) |
-                       ((char2 & 0x3F) << 6) |
-                       ((char3 & 0x3F) << 0));
-        break;
-    }
-    }
-  
-    return out;
-  }
-
   let totalTime = 0
-  for (let i = 0; i < 1; i++) {
+  let responseData
+  for (let i = 0; i < 10; i++) {
     const startTime = new Date()
-    await fetch(req.body.url)
-    .then((response => response.blob()))
-    .then(async (blobData) => {
-      totalTime += new Date() - startTime
-      blobData = blobData.stream()
-      const reader = blobData.getReader()
-      await reader.read()
-      .then(data => {
-        const integerStrings = data.value.toString().split(',');
-        const integers = integerStrings.map(value => parseInt(value, 10));
-        const characters = integers.map(code => String.fromCharCode(code));
-        const resultHtml = characters.join('');
-        res.locals.data = resultHtml
-      })
-    })
+
+    //await keyword pauses for loop where promise chaining did not
+    response = await fetch(`${req.body.url}`)
+    totalTime += new Date() - startTime
+    responseData = response
   }
-  res.locals.ttfb = totalTime / 1
+
+  //converts fetch response to blob data
+  const blobData = await responseData.blob()
+
+  //converts blob data to a readable stream
+  const streamData = blobData.stream()
+
+  //gets a reader that can read that can read the readable stream
+  const reader = streamData.getReader()
+
+  //reads the readable stream into a uint8array
+  const readerData = await reader.read()
+
+  //takes the uint8array and converts each number back into the character they represent
+  const integerStrings = readerData.value.toString().split(',');
+  const integers = integerStrings.map(value => parseInt(value, 10));
+  const characters = integers.map(code => String.fromCharCode(code));
+  const resultHtml = characters.join('');
+
+  //stores the ttfb and response html on the res.locals object
+  res.locals.data = resultHtml
+  res.locals.ttfb = totalTime / 10
+
+  next()
+}
+
+metricsController.getDatabaseData = async (req, res, next) => {
+
+  //Selects all data from the metrics table and attaches the rows to the res.locals object
+  const data = await pool.query('SELECT * FROM metrics')
+  console.log(data.rows)
+  res.locals.databaseData = data.rows
+  
   next()
 }
 
