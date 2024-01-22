@@ -1,12 +1,15 @@
 import React, { useState, useEffect} from "react";
-import Dashboard from './dashboard'
+import Dashboard from './dashboard';
+//need this t o
+import { Chart as ChartJS } from 'chart.js/auto';
+
 
 
 const App = () => {
   const [data, setData] = useState("");
   useEffect(() => {
   
-  
+  //gets previous data from db
   function fetchData() {
     // make a http request to /api
     fetch('/api')
