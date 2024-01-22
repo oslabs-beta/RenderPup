@@ -1,33 +1,30 @@
-// const lighthouse = require('lighthouse');
-// const chromeLauncher = require('chrome-launcher');
-
-// import lighthouse from 'lighthouse';
-// import chromeLauncher from 'chrome-launcher';
-
 const importLighthouse = async () => {
     const lighthouse = await import('lighthouse');
     const chromeLauncher = await import('chrome-launcher');
+
     return { lighthouse, chromeLauncher };
   }
 const lighthouseController = {};
 
-lighthouseController.analyzeUrl = async (req, res) => {
+lighthouseController.analyzeUrl = async (req, res, next) => {
     const runLighthouse = async (url) => {
         const { lighthouse, chromeLauncher } = await importLighthouse();
         const chrome = await chromeLauncher.launch({ chromeFlags: ['--headless'] });
         const options = { logLevel: 'info', output: 'json', onlyCategories: ['performance'], port: chrome.port };
-        console.log(lighthouse)
-        const runnerResult = await lighthouse.lighthouse(url, options);
+        // console.log(lighthouse.default.lighthouse)
+        const runnerResult = await lighthouse.default(url, options);
+        // console.log(runnerResult);
         await chrome.kill();
 
         const audits = runnerResult.lhr.audits;
         const fcp = audits['first-contentful-paint'].numericValue;
         const lcp = audits['largest-contentful-paint'].numericValue;
+        console.log('FCP:', fcp, 'LCP:', lcp)
         return { fcp, lcp };
     };
 
     const saveMetrics = async (url, fcp, lcp) => {
-        await pool.query('query to send data to database', [url, fcp, lcp]);
+        // await pool.query('query to send data to database', [url, fcp, lcp]);
     };
 
     const { url } = req.body;
