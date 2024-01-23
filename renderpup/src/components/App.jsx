@@ -19,11 +19,11 @@ const App = () => {
       })
       //use useState to access TTFB 
       .then(data => {
-        console.log("SEE YOUR DATA", data);
+        // console.log("SEE YOUR DATA", data);
         setData(data);
       })
       .catch(error => {
-        console.log('UNEXPECTED ERROR: ', error)
+        // console.log('UNEXPECTED ERROR: ', error)
       });
   }
     // invoke fetchData function 
