@@ -14,15 +14,15 @@ const Bargraph = (props) => {
           {
             label: "Time to First Byte",
             data: chartData.map(item => item.ttfb),
-            backgroundColor: 'rgba(255, 255, 255)',
+            backgroundColor: 'rgba(7,123,247,1)',
             borderColor: 'rgba(7,123,247,1)',
             borderWidth: 1,
           },
           {
             label: "Time to Last Byte",
             data: chartData.map(item => item.ttlb),
-            backgroundColor: 'rgba(255, 255, 255)',
-            borderColor: 'rgba(7,123,247,1)',
+            backgroundColor: 'rgb(242, 140, 40)',
+            borderColor: 'rgb(242, 140, 40)',
             borderWidth: 1,
           }
         ],
