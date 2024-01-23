@@ -28,10 +28,14 @@ const Bargraph = (props) => {
         ],
       }
   return (
+    <div className="graphSizes">
     <Bar 
       data={config}
     />
+    </div>
   );
 };
 
 export default Bargraph;
+
+

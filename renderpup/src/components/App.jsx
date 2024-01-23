@@ -3,7 +3,7 @@ import Dashboard from './dashboard';
 //need this to 
 import { Chart as ChartJS } from 'chart.js/auto';
 import Bargraph from './Bargraph';
-
+import Doughnut from './Doughnut';
 
 
 const App = () => {
@@ -42,6 +42,7 @@ const App = () => {
       <Dashboard/>
       {/* Render Bargraph when data is available */}
       {<Bargraph data={chartData} />}    
+      {<Doughnut data={chartData} />}  
         
       </div>
   )

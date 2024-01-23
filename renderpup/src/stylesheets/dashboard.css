@@ -11,8 +11,7 @@ h1{
   display: flex;
   align-items:center;
   justify-content: center;
-  
-  
+
 }
 
 
@@ -42,4 +41,8 @@ h1{
 
 #dogFetchingBall {
   width: 5%;
+}
+
+.graphSizes {
+  width: 50%;
 }
