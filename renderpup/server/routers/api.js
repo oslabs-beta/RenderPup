@@ -13,7 +13,7 @@ router.post('/', lighthouseController.analyzeUrl,(req, res) => {
   res.status(200).json({data: res.locals.saveMetrics})
 });
 
-router.post('/history/:url', lighthouseController.getMetricsHistory,(req, res) => {
+router.get('/history/:url', lighthouseController.getMetricsHistory,(req, res) => {
   res.status(200).json({data: res.locals.getMetrics})
 });
 

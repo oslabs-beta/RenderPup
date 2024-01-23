@@ -1,3 +1,5 @@
+const db = require('../models/model')
+
 const importLighthouse = async () => {
     const lighthouse = await import('lighthouse');
     const chromeLauncher = await import('chrome-launcher');
@@ -11,7 +13,7 @@ lighthouseController.analyzeUrl = async (req, res, next) => {
         const { lighthouse, chromeLauncher } = await importLighthouse();
         const chrome = await chromeLauncher.launch({ chromeFlags: ['--headless'] });
         const options = { logLevel: 'info', output: 'json', onlyCategories: ['performance'], port: chrome.port };
-        // console.log(lighthouse.default.lighthouse)
+        // console.log(lighthouse.default)
         const runnerResult = await lighthouse.default(url, options);
         // console.log(runnerResult);
         await chrome.kill();
@@ -24,7 +26,12 @@ lighthouseController.analyzeUrl = async (req, res, next) => {
     };
 
     const saveMetrics = async (url, fcp, lcp) => {
-        // await pool.query('query to send data to database', [url, fcp, lcp]);
+        console.log('url:', typeof url, 'fcp:', fcp, 'lcp:', lcp);
+        // const text = `INSERT INTO test (fcp, lcp) VALUES ($1, $2)`;
+        // const params = [ fcp, lcp ];
+        // await db.query(text, params);
+        await db.query('INSERT INTO test (url, fcp, lcp)' + `VALUES ('${url}',${fcp}, ${lcp})`);
+        // await db.query('INSERT INTO test (url, fcp, lcp) VALUES ($1, $2, $3)', [url, fcp, lcp]);
     };
 
     const { url } = req.body;
@@ -37,15 +44,20 @@ lighthouseController.analyzeUrl = async (req, res, next) => {
     }
 };
 
-lighthouseController.getMetricsHistory = async (req, res) => {
-    const getMetricsHistory = async (url) => {
-        const { rows } = await pool.query('query to get data from database', [url]);
-        return rows;
-    };
-
+lighthouseController.getMetricsHistory = async (req, res, next) => {
+    console.log('req.params:', req.params);
     const { url } = req.params;
+    // const getMetricsHistory = async (url) => {
+    //     console.log("url:", url);
+    //     const { rows } = await db.query('SELECT fcp FROM test' + `WHERE url = '${url}'`);
+    //     console.log("rows:" , rows);
+    //     return rows;
+    // };
+
     try {
-        res.locals.getMetrics = getMetricsHistory(url);
+        // const { rows } = await db.query('SELECT fcp FROM test' + `WHERE url = '${url}'`);
+        const { rows } = await db.query('SELECT fcp FROM test WHERE url = $1', [url]);
+        res.locals.getMetrics = rows;
         next();
     } catch (error) {
         console.log('Error in getMetricsHistory controller:', error);
