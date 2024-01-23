@@ -1,5 +1,6 @@
 const express = require('express');
 const metricsController = require('../controllers/metrics')
+const lighthouseController = require('../controllers/lighthouseController');
 
 const router = express.Router();
 
@@ -12,5 +13,13 @@ router.post('/', metricsController.timeToFirstByte, (req, res) => {
 router.get('/', metricsController.getDatabaseData, (req, res) => {
   res.status(200).json({data: res.locals.databaseData})
 })
+
+// router.post('/', lighthouseController.analyzeUrl,(req, res) => {
+//   res.status(200).json({data: res.locals.saveMetrics})
+// });
+
+// router.get('/history/:url', lighthouseController.getMetricsHistory,(req, res) => {
+//   res.status(200).json({data: res.locals.getMetrics})
+// });
 
 module.exports = router;
