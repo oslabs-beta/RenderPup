@@ -43,7 +43,7 @@ const config = {
     static: {
       directory: './build'
     },
-    proxy: { '/api': 'http://localhost:3000'}
+    proxy: { '/api': 'http://localhost:3001'}
   },
   resolve: {
     extensions: [

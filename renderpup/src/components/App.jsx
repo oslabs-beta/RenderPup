@@ -9,6 +9,7 @@ const App = () => {
   
   function fetchData() {
     // make a http request to /api
+    console.log('here')
     fetch('/api')
       .then(response => {
         //then checks of status code is ok (200-299); if not, throw 404 error
