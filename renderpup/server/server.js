@@ -1,7 +1,11 @@
 const express = require ('express');
 const path = require('path');
+const bodyParser = require('body-parser');
 const app = express();
-const PORT = 3001;
+
+app.use(bodyParser.json());
+
+const PORT = 3000;
 
 app.use(express.json())
 const apiRouter = require(path.resolve(__dirname, './routers/api.js'))
