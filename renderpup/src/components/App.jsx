@@ -16,7 +16,6 @@ const App = () => {
   //gets previous data from db
   function fetchData() {
     // make a http request to /api
-    console.log('here')
     fetch('/api')
       .then(response => {
         //then checks of status code is ok (200-299); if not, throw 404 error
@@ -40,7 +39,7 @@ const App = () => {
 }, []);
   return (
       <div>
-      <Dashboard/>
+      <Dashboard updateState={setData} currState={chartData} />
       {/* Render Bargraph when data is available */}
       {<Bargraph data={chartData} />}    
         

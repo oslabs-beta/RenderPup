@@ -2,16 +2,16 @@ import React from "react";
 import '../stylesheets/dashboard.css';
 import image_png from '../../public/image_png.png';
 
-const dashboard = () => {
+const dashboard = (props) => {
 
   function getData() {
 
+    //grabs data from search bar and clears it
     const urlField = document.querySelector('.app-input-field')
     let currUrl = urlField.value
     urlField.value = ''
 
     currUrl = JSON.stringify({url: currUrl})
-    console.log(currUrl)
 
     fetch('/api', {
       method: 'POST',
@@ -30,7 +30,10 @@ const dashboard = () => {
       })
       //use useState to access TTFB 
       .then(data => {
-        console.log("SEE YOUR DATA", data);
+        const tempArr = [...props.currState.data]
+        tempArr.push(data.data)
+        const newData = {data: tempArr}
+        props.updateState(newData)
       })
       .catch(error => {
         console.log('UNEXPECTED ERROR: ', error)
