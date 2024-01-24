@@ -39,7 +39,7 @@ const App = () => {
 }, []);
   return (
       <div>
-      <Dashboard/>
+      <Dashboard updateState={setData} currState={chartData} />
       {/* Render Bargraph when data is available */}
       {<Bargraph data={chartData} />}    
         
