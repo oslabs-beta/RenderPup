@@ -38,8 +38,9 @@ const App = () => {
     fetchData();
 }, []);
   return (
-      <div>
+      <div className ="drop-down-menu">
       <Dashboard/>
+      <br />
       {/* Render Bargraph when data is available */}
       {<Bargraph data={chartData} />}    
       {<Doughnut data={chartData} />}  

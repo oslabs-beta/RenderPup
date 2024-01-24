@@ -3,6 +3,21 @@ import '../stylesheets/dashboard.css';
 import image_png from '../../public/image_png.png';
 
 const dashboard = () => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(!open);
+  }
+
+  const handleWebsite1 = () => {
+    // do something
+    setOpen(false);
+  };
+
+  const handleWebsite2 = () => {
+    // do something
+    setOpen(false);
+  };
 
   function getData() {
 
@@ -50,7 +65,21 @@ const dashboard = () => {
           <input className='app-input-field' type='text' name='url' placeholder="Search"/>
         </label>
         <button className='go-fetch-bttn' type='button' onClick={getData}>'Go Fetch'</button>
-      </form>
+
+      </form><br/>
+    
+      <div className ="dropdown">
+        <button onClick={handleOpen}>Fetch Performance Metrics from Websites Saved on Your Database!</button>
+        { open ? (
+          <ul className ="firstSite">
+            <li className="site-name"></li>
+            <button onClick={handleWebsite1}>1st Website</button>< br/><br/>
+            <li className="site-name2"></li>
+            <button onClick={handleWebsite2}>2nd Website</button>
+          </ul>
+        ) : null}    
+      </div>
+     
     </div>
   );
 };

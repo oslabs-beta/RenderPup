@@ -18,6 +18,7 @@ h1{
 /* ------- app form ------- */
 .app-form {
   text-align: center;
+  
 }
 
 .app-input-field {
@@ -30,12 +31,21 @@ h1{
   border-color: rgb(152, 152, 157);
 }
 
-.go-fetch-bttn {
+/* .go-fetch-bttn {
   background-color: rgb(82, 82, 234);
   color: white;
   border-radius: 0.4em;
   padding: 0.6em;
   border: none;
+} */
+
+button {
+  background-color: rgb(82, 82, 234);
+  color: white;
+  border-radius: 0.4em;
+  padding: 0.6em;
+  border: none;
+  text-align: right;
 }
 /* ------------------------ */
 
@@ -45,4 +55,12 @@ h1{
 
 .graphSizes {
   width: 50%;
+}
+
+.dropdown {
+  text-align: center;
+}
+
+.firstSite {
+  list-style: none;
 }
