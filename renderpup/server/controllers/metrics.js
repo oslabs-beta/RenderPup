@@ -47,7 +47,7 @@ metricsController.timeToFirstByte = async (req, res, next) => {
 metricsController.getDatabaseData = async (req, res, next) => {
   console.log('here')
   //Selects all data from the metrics table and attaches the rows to the res.locals object
-  const data = await db.query('SELECT * FROM metrics')
+  const data = await db.query("SELECT * FROM metrics WHERE url='https://www.google.com/'")
   console.log(data.rows)
   res.locals.databaseData = data.rows
   
