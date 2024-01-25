@@ -36,6 +36,7 @@ metricsController.timeToFirstByte = async (req, res, next) => {
     //stores the ttfb and response html on the res.locals object
     res.locals.data = resultHtml
     res.locals.metrics = {ttfb: totalTime / 1}
+    res.locals.metrics.url = req.body.url
 
     next()
   }
@@ -45,11 +46,21 @@ metricsController.timeToFirstByte = async (req, res, next) => {
 }
 
 metricsController.getDatabaseData = async (req, res, next) => {
-  console.log('here')
+  console.log('in get database data: ', req.body)
   //Selects all data from the metrics table and attaches the rows to the res.locals object
-  const data = await db.query("SELECT * FROM metrics WHERE url='https://www.google.com/'")
-  console.log(data.rows)
+  const data = await db.query(`SELECT * FROM metrics WHERE url='${req.body.url}/'`)
+  // const data = await db.query('SELECT ttfb, fcp, lcp, nsl FROM metrics WHERE url = $1', [url])
   res.locals.databaseData = data.rows
+  
+  next()
+}
+
+metricsController.getUrls = async (req, res, next) => {
+  console.log('here in get urls middleware')
+  //Selects all data from the metrics table and attaches the rows to the res.locals object
+  const data = await db.query('SELECT url FROM metrics')
+  // const data = await db.query('SELECT ttfb, fcp, lcp, nsl FROM metrics WHERE url = $1', [url])
+  res.locals.urls = data.rows
   
   next()
 }

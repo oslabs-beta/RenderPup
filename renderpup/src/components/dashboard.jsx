@@ -2,7 +2,18 @@ import React from "react";
 import '../stylesheets/dashboard.css';
 import image_png from '../../public/image_png.png';
 
-const dashboard = (props) => {
+const dashboard = ({updateState, currState, urlList}) => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(!open);
+  }
+
+  const handleWebsite = async (url) => {
+    const data = await fetchData(url)
+    console.log(`Metrics for ${url}`, data)
+    // setOpen(false);
+  };
 
   function getData() {
 
@@ -25,19 +36,64 @@ const dashboard = (props) => {
         console.log(response)
         if (!response.ok) {
           console.error(`Network response is not rendering, ${response.status} error`)
+          throw new Error('response not ok')
+        }
+        return response.json();
+      })
+      //use useState to access TTFB 
+      .then(async data => {
+        if (currState.data[0].url === 0) {
+          const strippedUrl = data.data.url.slice(0, data.data.url.length - 1)
+          await fetchData(strippedUrl)
+        }
+        else if (data.data.url === currState.data[0].url) {
+          const tempArr = [...currState.data]
+          tempArr.push(data.data)
+          const newData = {data: tempArr}
+          updateState(newData)
+        }
+      })
+      .catch(error => {
+        console.log('UNEXPECTED ERROR: ', error)
+      });
+  }
+
+  function fetchData(currUrl) {
+    console.log('in Fetch d')
+    // make a http request to /api
+    fetch('/api/urls', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({url: currUrl}),
+    })
+      .then(response => {
+        //then checks of status code is ok (200-299); if not, throw 404 error
+        if (!response.ok) {
+          console.error(`Network response is not rendering, ${response.status} error`)
+          throw new Error('response not okay')
         }
         return response.json();
       })
       //use useState to access TTFB 
       .then(data => {
-        const tempArr = [...props.currState.data]
-        tempArr.push(data.data)
-        const newData = {data: tempArr}
-        props.updateState(newData)
+        // console.log("SEE YOUR DATA", data);
+        console.log('heres the data: ', data)
+        updateState(data);
       })
       .catch(error => {
         console.log('UNEXPECTED ERROR: ', error)
       });
+  }
+
+  const buttons = []
+  console.log('buttons:', buttons);
+  console.log('urlList:', urlList);
+  const urls = Array.from(urlList)
+  for (let i = 0; i < urls.length; i++) {
+    // buttons.push(<li className="site-name"></li>)
+    buttons.push(<button className='saved-urls' onClick={() => handleWebsite(`${urls[i]}`)} key={crypto.randomUUID()}>{`${urls[i]}`}</button>)
   }
 
   return (
@@ -52,8 +108,22 @@ const dashboard = (props) => {
         <label>
           <input className='app-input-field' type='text' name='url' placeholder="Search"/>
         </label>
-        <button className='go-fetch-bttn' type='button' onClick={getData}>'Go Fetch'</button>
-      </form>
+        <button className='go-fetch-bttn' type='button' onClick={getData}>Go Fetch</button>
+      </form><br/>
+
+        <div className ="dropdown">
+          <button onClick={handleOpen}>Fetch Performance Metrics from Websites Saved on Your Database!</button>
+          { open ? (
+            <ul className ="firstSite">
+              {buttons}
+              {/* <li className="site-name"></li> */}
+              {/* <button onClick={() => handleWebsite('1st website')}>1st Website</button>< br/><br/> */}
+              {/* <li className="site-name2"></li> */}
+              {/* <button onClick={handleWebsite2}>2nd Website</button> */}
+            </ul>
+          ) : null}    
+        </div>
+     
     </div>
   );
 };

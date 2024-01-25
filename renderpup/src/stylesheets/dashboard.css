@@ -11,8 +11,7 @@ h1{
   display: flex;
   align-items:center;
   justify-content: center;
-  
-  
+
 }
 
 
@@ -23,7 +22,7 @@ h1{
 
 .app-input-field {
   height: 2em;
-  width: 50%;
+  width: 30%;
   margin-left: 1em;
   margin-right: 1em;
   border-radius: 0.4em;
@@ -31,15 +30,46 @@ h1{
   border-color: rgb(152, 152, 157);
 }
 
-.go-fetch-bttn {
+/* .go-fetch-bttn {
   background-color: rgb(82, 82, 234);
   color: white;
   border-radius: 0.4em;
   padding: 0.6em;
   border: none;
+} */
+
+button {
+  background-color: rgb(82, 82, 234);
+  color: white;
+  border-radius: 0.4em;
+  padding: 0.6em;
+  margin: 0.6em;
+  border: none;
+  text-align: right;
 }
 /* ------------------------ */
 
 #dogFetchingBall {
   width: 5%;
+}
+
+.graphSizes {
+  width: 50%;
+}
+
+.dropdown {
+  text-align: center;
+}
+
+.firstSite {
+  list-style: none;
+}
+
+#graphs {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.saved-urls {
+  background-color: rgb(47, 134, 247);
 }
