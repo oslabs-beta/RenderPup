@@ -2,7 +2,9 @@ import React, { useState, useEffect} from "react";
 import Dashboard from './dashboard';
 //need this to 
 import { Chart as ChartJS } from 'chart.js/auto';
-import Bargraph from './Bargraph';
+import Bargraph from './BarGraph';
+import LineChart from './LineChart';
+import BubbleChart from './BubbleChart';
 
 
 
@@ -41,7 +43,9 @@ const App = () => {
       <div>
       <Dashboard updateState={setData} currState={chartData} />
       {/* Render Bargraph when data is available */}
-      {<Bargraph data={chartData} />}    
+      {<Bargraph data={chartData} />}  
+      {<LineChart data={chartData} />}  
+      {<BubbleChart data={chartData} />} 
         
       </div>
   )

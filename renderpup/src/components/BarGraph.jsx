@@ -7,13 +7,6 @@ const Bargraph = (props) => {
         labels: chartData.map(item => item.date),
         datasets: [
           {
-            label: "Time to First Byte",
-            data: chartData.map(item => item.ttfb),
-            backgroundColor: 'rgba(7,123,247,1)',
-            borderColor: 'rgba(7,123,247,1)',
-            borderWidth: 1,
-          },
-          {
             label: "First Contentful Paint",
             data: chartData.map(item => item.fcp),
             backgroundColor: 'rgb(242, 140, 40)',
@@ -27,13 +20,13 @@ const Bargraph = (props) => {
             borderColor: 'rgba(7,123,247,1)',
             borderWidth: 1,
           },
-          {
-            label: "Network Server Latency",
-            data: chartData.map(item => item.nsl),
-            backgroundColor: 'rgba(7,123,247,1)',
-            borderColor: 'rgba(7,123,247,1)',
-            borderWidth: 1,
-          },
+          // {
+          //   label: "Network Server Latency",
+          //   data: chartData.map(item => item.nsl),
+          //   backgroundColor: 'rgba(7,123,247,1)',
+          //   borderColor: 'rgba(7,123,247,1)',
+          //   borderWidth: 1,
+          // },
         ],
       }
   return (
