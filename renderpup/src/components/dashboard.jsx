@@ -41,11 +41,17 @@ const dashboard = ({updateState, currState, urlList}) => {
         return response.json();
       })
       //use useState to access TTFB 
-      .then(data => {
-        const tempArr = [...currState.data]
-        tempArr.push(data.data)
-        const newData = {data: tempArr}
-        updateState(newData)
+      .then(async data => {
+        if (currState.data[0].url === 0) {
+          const strippedUrl = data.data.url.slice(0, data.data.url.length - 1)
+          await fetchData(strippedUrl)
+        }
+        else if (data.data.url === currState.data[0].url) {
+          const tempArr = [...currState.data]
+          tempArr.push(data.data)
+          const newData = {data: tempArr}
+          updateState(newData)
+        }
       })
       .catch(error => {
         console.log('UNEXPECTED ERROR: ', error)

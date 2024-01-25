@@ -4,7 +4,7 @@ import { Line } from 'react-chartjs-2';
 const LineChart = (props) => {
     const chartData = props.data.data;
     const config = {
-        labels: chartData.map(item => item.date),
+        labels: chartData.map(item => props.convertDate(item.date)),
         datasets: [
             {
                 label: 'Time To First Byte (TTFB)',

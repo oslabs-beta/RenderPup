@@ -5,7 +5,7 @@ const Bargraph = (props) => {
     const chartData = props.data.data
     console.log("bar graph DATA", chartData)
    const config = {
-        labels: chartData.map(item => item.date),
+        labels: chartData.map(item => props.convertDate(item.date)),
         datasets: [
           // {
           //   label: "Time to First Byte",
