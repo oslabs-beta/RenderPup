@@ -1,6 +1,7 @@
 import React from "react";
 import '../stylesheets/dashboard.css';
 import image_png from '../../public/image_png.png';
+import renderpup from '../../public/renderpup.png';
 
 const dashboard = ({updateState, currState, urlList}) => {
   const [open, setOpen] = React.useState(false);
@@ -94,16 +95,20 @@ const dashboard = ({updateState, currState, urlList}) => {
     <div>
       <h1> RenderPup</h1>
       <div className="slogan">
+      
       <img id='dogFetchingBall' src={image_png} alt="dogFetchingBall" />
-      <h3>Sniffing out performance and fetching results!</h3>
+      <h3>Sniffing Out Performance and Fetching Results!</h3>
       </div>
+      
+      <div className="logoAndSearch">
+      <img id='logo' src={renderpup} alt="logo" />
       <form className='app-form'>
-        URL:
         <label>
-          <input className='app-input-field' type='text' name='url' placeholder="Search"/>
+          <input className='app-input-field' type='text' name='url' placeholder="Search URL"/>
         </label>
-        <button className='go-fetch-bttn' type='button' onClick={getData}>Go Fetch</button>
       </form><br/>
+        <button className='go-fetch-bttn' type='button' onClick={getData}>Go Fetch</button>
+      </div>
 
         <div className ="dropdown">
           <button onClick={handleOpen}>Fetch Performance Metrics from Websites Saved on Your Database!</button>

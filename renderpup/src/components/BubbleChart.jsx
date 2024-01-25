@@ -4,9 +4,9 @@ import { Bubble } from 'react-chartjs-2';
 
 const BubbleChart = (props) => {
     const chartData = props.data.data
-    console.log("BUBBLE CHART DATA", chartData)
+    console.log("BUBBLE CHART DATA before config", chartData)
    const config = {
-        type: 'bubble',
+        // type: 'bubble',
         labels: chartData.map(item => item.date),
         datasets: [
           {
@@ -22,7 +22,7 @@ const BubbleChart = (props) => {
           },
         ],
       }
-      console.log('BUBBLE CONFIG', config)
+      console.log('BUBBLE CONFIG AFTER CONFIG OF BUBBLE CHART VARIBALE', config)
       const options = {
         scales: {
             x: {

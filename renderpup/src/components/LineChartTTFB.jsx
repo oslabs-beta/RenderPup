@@ -1,7 +1,7 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 
-const LineChart = (props) => {
+const LineChartTTFB = (props) => {
     const chartData = props.data.data;
     const config = {
         labels: chartData.map(item => item.date),
@@ -9,10 +9,11 @@ const LineChart = (props) => {
             {
                 label: 'Time To First Byte (TTFB)',
                 fill: false,
-                lineTension: 0.2,
-                backgroubdColor: 'rgba(75,192,192,0,4)',
-                borderColor: 'rgba(75,192,192,1)',
-                data: chartData.map(item => item.ttfb)
+                lineTension: 0.7,
+                backgroundColor: '#0077b6',
+                borderColor: '#ffb703',
+                data: chartData.map(item => item.ttfb),
+                pointRadius: 5
             }
         ]
     }
@@ -21,13 +22,19 @@ const LineChart = (props) => {
             x: {
                 title: {
                     display: true,
-                    text: 'Date'
+                    text: 'Date',
+                    font: {
+                        size: 14
+                    }
                 }
             },
             y: {
                 title: {
                     display: true,
-                    text: 'Time(m/s)'
+                    text: 'Time (m/s)',
+                    font: {
+                        size: 14
+                    }
                 }
             }
         }
@@ -41,4 +48,4 @@ const LineChart = (props) => {
     )
 }
 
-export default LineChart;
+export default LineChartTTFB;

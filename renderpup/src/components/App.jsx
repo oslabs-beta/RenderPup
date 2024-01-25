@@ -3,8 +3,10 @@ import Dashboard from './dashboard';
 import { Chart as ChartJS } from 'chart.js/auto';
 import Bargraph from './Bargraph';
 import Doughnut from './Doughnut';
-import LineChart from './LineChart';
+import LineChartTTFB from './LineChartTTFB';
+import LineChartNSL from './LineChartNSL';
 import BubbleChart from './BubbleChart';
+
 
 const App = () => {
   //have initial state to be the same format that's returned from the server
@@ -42,9 +44,10 @@ const App = () => {
       {/* Render graphs when data is available */}
         <div id='graphs'>
           {<Bargraph data={chartData} />}    
-          {<LineChart data={chartData} />}  
-          {<BubbleChart data={chartData} />}  
-          {<Doughnut data={chartData} />} 
+          {<LineChartTTFB data={chartData} />}  
+          {<LineChartNSL data={chartData} />}  
+          {/* {<BubbleChart data={chartData} />}   */}
+          {/* {<Doughnut data={chartData} />}  */}
         </div>
       </div>
   )
