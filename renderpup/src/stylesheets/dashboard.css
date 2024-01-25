@@ -18,12 +18,11 @@ h1{
 /* ------- app form ------- */
 .app-form {
   text-align: center;
-  
 }
 
 .app-input-field {
   height: 2em;
-  width: 50%;
+  width: 30%;
   margin-left: 1em;
   margin-right: 1em;
   border-radius: 0.4em;
@@ -44,6 +43,7 @@ button {
   color: white;
   border-radius: 0.4em;
   padding: 0.6em;
+  margin: 0.6em;
   border: none;
   text-align: right;
 }
@@ -63,4 +63,13 @@ button {
 
 .firstSite {
   list-style: none;
+}
+
+#graphs {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.saved-urls {
+  background-color: rgb(47, 134, 247);
 }

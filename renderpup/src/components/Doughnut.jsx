@@ -12,11 +12,11 @@ const doughnutChart = (props) => {
       // Add more colors as needed
   ];
    const config = {
-        labels: chartData.map(item => item.memory_usage),
+        labels: chartData.map(item => item.nsl),
         datasets: [
           {
-            label: "Memory Usage",
-            data: chartData.map(item => item.memory_usage),
+            label: "Network Service Latency",
+            data: chartData.map(item => item.nsl),
             backgroundColor: backgroundColors,
             borderWidth: 1,
             borderAlign: 'center'
@@ -26,7 +26,7 @@ const doughnutChart = (props) => {
     const options = {
         title: {
             display: true,
-            text: 'Memory Usage Overview', // Your chart title
+            text: 'Network Service Latency Overview', // Your chart title
             fontSize: 16,
         },
     };

@@ -4,22 +4,18 @@ const lighthouseController = require('../controllers/lighthouseController');
 
 const router = express.Router();
 
-// //handles getting new website info on go fetch button click
-router.post('/', metricsController.timeToFirstByte, (req, res) => {
-  res.status(200).json({data: res.locals.ttfb, response: res.locals.data})
+//handles getting new website info on go fetch button click
+router.post('/', metricsController.timeToFirstByte, lighthouseController.analyzeUrl, metricsController.saveMetrics, (req, res) => {
+  return res.status(200).json({data: res.locals.metrics, response: res.locals.data})
+})
+
+router.get('/', metricsController.getUrls, (req, res) => {
+  return res.status(200).json({urls: res.locals.urls})
 })
 
 //handles getting database info on page load
-router.get('/', metricsController.getDatabaseData, (req, res) => {
-  res.status(200).json({data: res.locals.databaseData})
+router.post('/urls', metricsController.getDatabaseData, (req, res) => {
+  return res.status(200).json({data: res.locals.databaseData})
 })
-
-router.post('/', lighthouseController.analyzeUrl,(req, res) => {
-  res.status(200).json({data: res.locals.saveMetrics})
-});
-
-router.get('/history/:url', lighthouseController.getMetricsHistory,(req, res) => {
-  res.status(200).json({data: res.locals.getMetrics})
-});
 
 module.exports = router;
