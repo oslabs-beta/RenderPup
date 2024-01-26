@@ -10,9 +10,22 @@ import BubbleChart from './BubbleChart';
 
 const App = () => {
   //have initial state to be the same format that's returned from the server
-  const [chartData, setData] = useState({data:[{data:0}]});
+  const [chartData, setData] = useState({data:[{url:0}]});
   const [urls, setUrls] = useState(new Set())
   
+  function convertDate(date) {
+    if (date === undefined) return
+    const dateArr = date.split('')
+    for (let i = 0; i < dateArr.length; i++) {
+      if (dateArr[i] == 'T') {
+        dateArr[i] = ' '
+      }
+      else if (dateArr[i] == '.') {
+        dateArr.splice(i, dateArr.length + 1)
+      }
+    }
+    return dateArr.join('')
+  }
   
   useEffect(() => {
 
@@ -43,11 +56,9 @@ const App = () => {
       <br></br>
       {/* Render graphs when data is available */}
         <div id='graphs'>
-          {<Bargraph data={chartData} />}    
-          {<LineChartTTFB data={chartData} />}  
-          {<LineChartNSL data={chartData} />}  
-          {/* {<BubbleChart data={chartData} />}   */}
-          {/* {<Doughnut data={chartData} />}  */}
+          {<Bargraph data={chartData} convertDate={convertDate} />}    
+          {<LineChartTTFB data={chartData} convertDate={convertDate} />}  
+          {<LineChartNSL data={chartData} convertDate={convertDate} />} 
         </div>
       </div>
   )

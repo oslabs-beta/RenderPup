@@ -6,8 +6,8 @@ const BubbleChart = (props) => {
     const chartData = props.data.data
     console.log("BUBBLE CHART DATA before config", chartData)
    const config = {
-        // type: 'bubble',
-        labels: chartData.map(item => item.date),
+        type: 'bubble',
+        labels: chartData.map(item => props.convertDate(item.date)),
         datasets: [
           {
             label: "Network Server Latency",

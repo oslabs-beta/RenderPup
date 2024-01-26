@@ -36,6 +36,7 @@ metricsController.timeToFirstByte = async (req, res, next) => {
     //stores the ttfb and response html on the res.locals object
     res.locals.data = resultHtml
     res.locals.metrics = {ttfb: totalTime / 1}
+    res.locals.metrics.url = req.body.url
 
     next()
   }
