@@ -1,10 +1,10 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 
-const LineChartNSL = (props) => {
-    const chartData = props.data.data;
+const LineChartNSL = ({data, convertDate}) => {
+    const chartData = data.data;
     const config = {
-        labels: chartData.map(item => item.date),
+        labels: chartData.map(item => convertDate(item.date)),
         datasets: [
             {
                 label: 'Network Server Latency (NSL)',

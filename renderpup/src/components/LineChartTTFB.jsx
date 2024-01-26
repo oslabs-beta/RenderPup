@@ -1,10 +1,10 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 
-const LineChartTTFB = (props) => {
-    const chartData = props.data.data;
+const LineChartTTFB = ({data, convertDate}) => {
+    const chartData = data.data;
     const config = {
-        labels: chartData.map(item => props.convertDate(item.date)),
+        labels: chartData.map(item => convertDate(item.date)),
         datasets: [
             {
                 label: 'Time To First Byte (TTFB)',
