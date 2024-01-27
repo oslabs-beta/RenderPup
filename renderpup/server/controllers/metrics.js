@@ -71,7 +71,7 @@ metricsController.saveMetrics = async (req, res, next) => {
   res.locals.metrics.date = new Date()
   // console.log('url:', url, 'fcp:', fcp, 'lcp:', lcp);
   // await db.query('INSERT INTO test (url, ttfb, fcp, lcp, date)' + `VALUES ('${url}', ${ttfb}, ${fcp}, ${lcp}, NOW())`);
-  await db.query('INSERT INTO metrics (url, ttfb, fcp, lcp, nsl)' + `VALUES ('${url}', ${ttfb}, ${fcp}, ${lcp}, ${nsl})`);
+  await db.query('INSERT INTO metrics (url, ttfb, fcp, lcp, nsl) ' + `VALUES ('${url}', ${ttfb}, ${fcp}, ${lcp}, ${nsl})`);
   next()
 };
 

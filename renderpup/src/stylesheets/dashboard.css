@@ -96,3 +96,12 @@ button {
   align-items: center;
   width: 100%;
 }
+
+#loadingPage {
+  display: flex;
+  justify-content: center;
+}
+
+#loadingDog {
+  height: 3em;
+}
