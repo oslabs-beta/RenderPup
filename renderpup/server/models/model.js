@@ -6,6 +6,8 @@ const { Pool } = require("pg");
 const pool = new Pool({
   connectionString: process.env.PG_URI,
 });
+
+
 // Export the pool object to be used in other modules
 module.exports = {
   query: (text, params, callback) => {
