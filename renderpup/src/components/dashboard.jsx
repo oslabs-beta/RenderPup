@@ -121,7 +121,7 @@ const dashboard = ({updateState, currState, urlList}) => {
               {/* <li className="site-name2"></li> */}
               {/* <button onClick={handleWebsite2}>2nd Website</button> */}
             </ul>
-          ) : null}    
+          ) : null}
         </div>
      
     </div>
