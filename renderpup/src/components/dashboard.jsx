@@ -11,12 +11,12 @@ const dashboard = ({updateState, currState, urlList}) => {
   }
 
   const handleWebsite = async (url) => {
-    const data = await fetchData(url)
+    const data = await getExistingData(url)
     console.log(`Metrics for ${url}`, data)
     // setOpen(false);
   };
 
-  function getData() {
+  function getNewData() {
 
     //grabs data from search bar and clears it
     const urlField = document.querySelector('.app-input-field')
@@ -45,12 +45,15 @@ const dashboard = ({updateState, currState, urlList}) => {
       .then(async data => {
         if (currState.data[0].url === 0) {
           const strippedUrl = data.data.url.slice(0, data.data.url.length - 1)
-          await fetchData(strippedUrl)
+          await getExistingData(strippedUrl)
         }
         else if (data.data.url === currState.data[0].url) {
+          // in order to return data back as mutable, take all data from currState as indiv elements (spread) 
+          // & make new arr tempArr to store it in to be able to update state 
           const tempArr = [...currState.data]
           tempArr.push(data.data)
           const newData = {data: tempArr}
+          // updates state with new data from post req that's in the same format as initial state (refer to app) 
           updateState(newData)
         }
       })
@@ -59,7 +62,7 @@ const dashboard = ({updateState, currState, urlList}) => {
       });
   }
 
-  function fetchData(currUrl) {
+  function getExistingData(currUrl) {
     console.log('in Fetch d')
     // make a http request to /api
     fetch('/api/urls', {
@@ -113,7 +116,7 @@ const dashboard = ({updateState, currState, urlList}) => {
           <input className='app-input-field' type='text' name='url' placeholder="Search URL"/>
         </label>
       </form><br/>
-        <button className='go-fetch-bttn' type='button' onClick={getData}>Go Fetch</button>
+        <button className='go-fetch-bttn' type='button' onClick={getNewData}>Go Fetch</button>
       </div>
 
         <div className ="dropdown">
