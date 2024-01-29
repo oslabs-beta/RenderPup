@@ -1,5 +1,7 @@
 body {
-  background-color: #b9dafd;
+  /* background-color: #b9dafd; */
+  background-color: #8ecae6;
+  font: 1em monaco;
 }
 
 h1{
@@ -22,7 +24,7 @@ h1{
 
 .app-input-field {
   height: 2em;
-  width: 30%;
+  width: 150%;
   margin-left: 1em;
   margin-right: 1em;
   border-radius: 0.4em;
@@ -30,16 +32,20 @@ h1{
   border-color: rgb(152, 152, 157);
 }
 
-/* .go-fetch-bttn {
-  background-color: rgb(82, 82, 234);
+
+.go-fetch-bttn {
+  /* background-color: rgb(82, 82, 234); */
+  background-color: #023047;
   color: white;
   border-radius: 0.4em;
   padding: 0.6em;
   border: none;
-} */
+  margin-left: 9em;
+}
 
 button {
-  background-color: rgb(82, 82, 234);
+  /* background-color: rgb(82, 82, 234); */
+  background-color: #023047;
   color: white;
   border-radius: 0.4em;
   padding: 0.6em;
@@ -51,6 +57,7 @@ button {
 
 #dogFetchingBall {
   width: 5%;
+  margin-right: 0.5em;
 }
 
 .graphSizes {
@@ -71,5 +78,30 @@ button {
 }
 
 .saved-urls {
-  background-color: rgb(47, 134, 247);
+  /* background-color: rgb(47, 134, 247); */
+  background-color: #219ebc;
+}
+
+#logo {
+    height: auto; 
+    width: auto; 
+    max-width: 50px; 
+    max-height: 50px;
+  
+}
+
+.logoAndSearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#loadingPage {
+  display: flex;
+  justify-content: center;
+}
+
+#loadingDog {
+  height: 3em;
 }

@@ -1,22 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import '../stylesheets/dashboard.css';
 import image_png from '../../public/image_png.png';
+import renderpup from '../../public/renderpup.png';
+import runningDog from '../../public/runningDog.gif';
 
 const dashboard = ({updateState, currState, urlList}) => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleOpen = () => {
     setOpen(!open);
   }
 
+
   const handleWebsite = async (url) => {
-    const data = await fetchData(url)
+    const data = await getExistingData(url)
     console.log(`Metrics for ${url}`, data)
     // setOpen(false);
   };
 
-  function getData() {
-
+  function getNewData() {
+    setLoading(true);
     //grabs data from search bar and clears it
     const urlField = document.querySelector('.app-input-field')
     let currUrl = urlField.value
@@ -32,6 +36,7 @@ const dashboard = ({updateState, currState, urlList}) => {
       body: currUrl,
     })
       .then(response => {
+        setLoading(false);
         //then checks of status code is ok (200-299); if not, throw 404 error
         console.log(response)
         if (!response.ok) {
@@ -44,7 +49,7 @@ const dashboard = ({updateState, currState, urlList}) => {
       .then(async data => {
         if (currState.data[0].url === 0) {
           const strippedUrl = data.data.url.slice(0, data.data.url.length - 1)
-          await fetchData(strippedUrl)
+          await getExistingData(strippedUrl)
         }
         else if (data.data.url === currState.data[0].url) {
           const tempArr = [...currState.data]
@@ -58,7 +63,7 @@ const dashboard = ({updateState, currState, urlList}) => {
       });
   }
 
-  function fetchData(currUrl) {
+  function getExistingData(currUrl) {
     console.log('in Fetch d')
     // make a http request to /api
     fetch('/api/urls', {
@@ -96,20 +101,35 @@ const dashboard = ({updateState, currState, urlList}) => {
     buttons.push(<button className='saved-urls' onClick={() => handleWebsite(`${urls[i]}`)} key={crypto.randomUUID()}>{`${urls[i]}`}</button>)
   }
 
+  const loadingDog = <img id='loadingDog' src={runningDog}></img>;
+
   return (
     <div>
       <h1> RenderPup</h1>
       <div className="slogan">
+      
       <img id='dogFetchingBall' src={image_png} alt="dogFetchingBall" />
-      <h3>Sniffing out performance and fetching results!</h3>
+      <h3>Sniffing Out Performance and Fetching Results!</h3>
       </div>
+      
+      <div className="logoAndSearch">
+      <img id='logo' src={renderpup} alt="logo" />
       <form className='app-form'>
-        URL:
         <label>
-          <input className='app-input-field' type='text' name='url' placeholder="Search"/>
+          <input className='app-input-field' type='text' name='url' placeholder="Search URL"/>
         </label>
-        <button className='go-fetch-bttn' type='button' onClick={getData}>Go Fetch</button>
       </form><br/>
+
+        <button className='go-fetch-bttn' type='button' onClick={getNewData}>Go Fetch</button>
+
+      </div>
+      
+        { loading ? (
+          <div id='loadingPage'>
+            <p>Fetching...</p>
+            {loadingDog} 
+          </div>
+          ) : null}
 
         <div className ="dropdown">
           <button onClick={handleOpen}>Fetch Performance Metrics from Websites Saved on Your Database!</button>
