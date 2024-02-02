@@ -52,9 +52,12 @@ const dashboard = ({updateState, currState, urlList}) => {
           await getExistingData(strippedUrl)
         }
         else if (data.data.url === currState.data[0].url) {
+          // in order to return data back as mutable, take all data from currState as indiv elements (spread) 
+          // & make new arr tempArr to store it in to be able to update state 
           const tempArr = [...currState.data]
           tempArr.push(data.data)
           const newData = {data: tempArr}
+          // updates state with new data from post req that's in the same format as initial state (refer to app) 
           updateState(newData)
         }
       })
