@@ -8,6 +8,7 @@ import LineChartNSL from './LineChartNSL';
 import BubbleChart from './BubbleChart';
 
 
+
 const App = () => {
   //have initial state to be the same format that's returned from the server
   const [chartData, setData] = useState({data:[{url:0}]});
