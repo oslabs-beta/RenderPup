@@ -1,6 +1,7 @@
 const express = require('express');
 const metricsController = require('../controllers/metrics')
 const lighthouseController = require('../controllers/lighthouseController');
+const userController = require('../controllers/userController');
 
 const router = express.Router();
 
@@ -17,5 +18,14 @@ router.get('/', metricsController.getUrls, (req, res) => {
 router.post('/urls', metricsController.getDatabaseData, (req, res) => {
   return res.status(200).json({data: res.locals.databaseData})
 })
+
+router.post('/login', userController.verifyUser, (req, res) => {
+  return res.status(200).json(res.locals.passwordMatches)
+})
+
+router.post('/signup', userController.createUser, (req, res) => {
+  return res.status(200).json(res.locals.userCreated)
+})
+
 
 module.exports = router;
