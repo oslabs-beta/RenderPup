@@ -6,7 +6,7 @@ const router = express.Router();
 
 //handles getting new website info on go fetch button click
 router.post('/', metricsController.timeToFirstByte, lighthouseController.analyzeUrl, metricsController.saveMetrics, (req, res) => {
-  return res.status(200).json({data: {metrics: res.locals.metrics, diagnostics: res.locals.diagnostics}, response: res.locals.data})
+  return res.status(200).json({data: {metrics: res.locals.metrics, opportunities: res.locals.opportunities, performanceScore: res.locals.performanceScore}, response: res.locals.data})
 })
 
 router.get('/', metricsController.getUrls, (req, res) => {
