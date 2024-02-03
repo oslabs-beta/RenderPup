@@ -1,14 +1,24 @@
 import React, { useState } from "react";
 import { AppBar, Toolbar, Button, Typography, Container, Menu, MenuItem, Box } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import '../stylesheets/dashboard.css';
 import image_png from '../../public/image_png.png';
 import renderpup from '../../public/renderpup.png';
 import runningDog from '../../public/runningDog.gif';
 
+
 const DashboardTwo = ({ updateState, currState, urlList }) => {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null); // For controlling the position of the dropdown
   const [loading, setLoading] = useState(false);
+  
+  //invoke useNavigate hook on top level of react function
+  const navigate = useNavigate();
+  
+  // functionality to handle sign out button on line 134
+  const handleSignOut = () => {
+    navigate('/logout');
+  };
 
   const handleOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -125,6 +135,9 @@ const DashboardTwo = ({ updateState, currState, urlList }) => {
             </Typography>
             <Button color="inherit" onClick={handleOpen}>
               Fetch Metrics
+            </Button>
+            <Button color="inherit" onClick={handleSignOut}>
+            Sign Out
             </Button>
             <Menu
               anchorEl={anchorEl}

@@ -10,9 +10,17 @@ userController.createUser = async (req, res, next) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    db.query('INSERT INTO users (username, password, firstname, lastname, email) ' + `VALUES ('${username}', '${hashedPassword}', '${firstName}', '${lastName}', '${email}')`)
-      .then(() => {
+    //add RETURNING user_id into the query to return user_id out and be used
+    db.query('INSERT INTO users (username, password, firstname, lastname, email) ' + `VALUES ('${username}', '${hashedPassword}', '${firstName}', '${lastName}', '${email}') RETURNING _id`)
+      // console.log('BEFORE THEN BLOCK')
+      .then(result => {
+        console.log('result:', result)
         res.locals.userCreated = 'User created successfully';
+        //save the user_id to use from result object (shows _id in result.rows property)
+        //  result.rows property is always at 0 index since 1 user only created in rows property
+        // const userId = result.rows[0]._id;
+        // console.log('user id for newly created user:', userId)
+        // req.session.userId = userId;
         return next();
       })
       .catch(err => next({
@@ -32,6 +40,8 @@ userController.verifyUser = async (req, res, next) => {
       console.log('does password match?:', res.locals.passwordMatches);
       if (res.locals.passwordMatches){
         res.cookie('token', 'user');
+        //use the user_id for joining to metrics
+        // res.locals.userId = user_id;
         return next();
       }
     })

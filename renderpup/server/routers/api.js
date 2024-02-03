@@ -24,7 +24,7 @@ router.post('/login', userController.verifyUser, (req, res) => {
 })
 
 router.post('/signup', userController.createUser, (req, res) => {
-  return res.status(200).json(res.locals.userCreated);
+  return res.status(200).json({message: res.locals.userCreated, userId: res.locals.userId});
 })
 
 router.post('/logout', userController.deleteCookie, (req, res) => {
