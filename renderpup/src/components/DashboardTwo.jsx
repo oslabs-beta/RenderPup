@@ -74,6 +74,7 @@ const DashboardTwo = ({ updateState, currState, urlList }) => {
           const tempArr = [...currState.data]
           tempArr.push(data.data.metrics)
           const newData = {data: tempArr}
+          console.log(newData)
           // updates state with new data from post req that's in the same format as initial state (refer to app) 
           updateState(newData)
         }
