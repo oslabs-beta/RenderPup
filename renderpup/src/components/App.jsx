@@ -1,12 +1,11 @@
 import React, { useState, useEffect} from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Dashboard from './dashboard';
+// import Dashboard from './dashboard';
 import { Chart as ChartJS } from 'chart.js/auto';
 import Bargraph from './BarGraph';
 import Doughnut from './Doughnut';
 import LineChartTTFB from './LineChartTTFB';
 import LineChartNSL from './LineChartNSL';
-import BubbleChart from './BubbleChart';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import Logout from './Logout';
@@ -88,7 +87,7 @@ useEffect(() => {
       }
       setUrls(uniqueUrls)
     })
-    .catch(err => console.log('ahhh an error: ', err))
+    .catch(err => console.log('error in fetchUrls', err))
   }
   
   fetchUrls()

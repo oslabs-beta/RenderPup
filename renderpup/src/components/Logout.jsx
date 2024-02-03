@@ -15,7 +15,6 @@ const Logout = () => {
         const responseData = await response.json();
 
         if (responseData.success) {
-          console.log(responseData.message);
           navigate('/signin');
         } else {
           console.error('Logout failed:', responseData.message);

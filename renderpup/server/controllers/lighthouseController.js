@@ -24,8 +24,7 @@ lighthouseController.analyzeUrl = async (req, res, next) => {
         //new
         const performanceScore = runnerResult.lhr.categories.performance.score * 100;
         
-        // const diagnostics = audits['diagnostics'].text;
-        console.log('Opportunties Audit:', audits['opportunities']);
+
 
         // const diagnostics = [];
         // if (audits['diagnostics'] && audits['diagnostics'].details) {

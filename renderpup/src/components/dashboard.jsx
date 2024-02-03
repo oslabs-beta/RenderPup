@@ -145,38 +145,6 @@ const dashboard = ({updateState, currState, urlList}) => {
             </ul>
           ) : null}    
         </div>
-        
-        <div className="logoAndSearch">
-        <img id='logo' src={renderpup} alt="logo" />
-        <form className='app-form'>
-          <label>
-            <input className='app-input-field' type='text' name='url' placeholder="Search URL"/>
-          </label>
-        </form><br/>
-
-          <button className='go-fetch-bttn' type='button' onClick={getNewData}>Go Fetch</button>
-
-        </div>
-        
-          { loading ? (
-            <div id='loadingPage'>
-              <p>Fetching...</p>
-              {loadingDog} 
-            </div>
-            ) : null}
-
-          <div className ="dropdown">
-            <button onClick={handleOpen}>Fetch Performance Metrics from Websites Saved on Your Database!</button>
-            { open ? (
-              <ul className ="firstSite">
-                {buttons}
-                {/* <li className="site-name"></li> */}
-                {/* <button onClick={() => handleWebsite('1st website')}>1st Website</button>< br/><br/> */}
-                {/* <li className="site-name2"></li> */}
-                {/* <button onClick={handleWebsite2}>2nd Website</button> */}
-              </ul>
-            ) : null}    
-          </div>
     </div>
   );
 };
