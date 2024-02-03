@@ -1,8 +1,10 @@
 body {
-  /* background-color: #b9dafd; */
-  background-color: #8ecae6;
+
+  background-image:radial-gradient(ellipse at center, rgb(234, 246, 255) 0%, rgb(220, 246, 255) 35%, #54cdf9 100%);
+  background-attachment: fixed;
   font: 1em monaco;
 }
+
 
 h1{
   text-align: center;
@@ -15,7 +17,6 @@ h1{
   justify-content: center;
 
 }
-
 
 /* ------- app form ------- */
 .app-form {

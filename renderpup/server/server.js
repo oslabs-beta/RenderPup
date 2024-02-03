@@ -2,17 +2,42 @@ const express = require ('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
+const cookieParser = require('cookie-parser');
+const userController = require('./controllers/userController');
 
 app.use(bodyParser.json());
 
 const PORT = 3000;
 
-app.use(express.json())
-const apiRouter = require(path.resolve(__dirname, './routers/api.js'))
-
 app.use(express.static(path.resolve(__dirname, '../build')));
 
+app.use(express.json())
+app.use(cookieParser());
+const apiRouter = require(path.resolve(__dirname, './routers/api.js'))
+
+
 app.use('/api', apiRouter)
+
+app.get('/dashboard', (req, res) => {
+  res.send('dashboard')
+})
+
+// app.get('/dashboard', userController.checkCookies, (req, res) => {
+//   console.log('IN GET DASHBOARD')
+//   //if cookie exists, redirect to dashboard
+//   if (!res.locals.isSignedIn) {
+//     console.log('in get dashboard request')
+//     const redirectURL = '/';
+//     res.status(200).json(redirectUrl);
+//   }
+// });
+
+// app.get('/dashboard', (req, res) => {
+//   console.log('IN GET DASHBOARD')
+//   return res.status(200).json('hello');
+// });
+
+
 
 //global error handler
 app.use((err, req, res, next) => {

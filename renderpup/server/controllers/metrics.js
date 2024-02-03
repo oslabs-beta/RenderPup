@@ -64,8 +64,13 @@ metricsController.getUrls = async (req, res, next) => {
 metricsController.saveMetrics = async (req, res, next) => {
   const { url } = req.body
   const { ttfb, fcp, lcp, nsl, bundleSize } = res.locals.metrics
+  const performanceScore = res.locals.performanceScore
+  // const diagnostics = res.locals.diagnostics
+  const opportunities = res.locals.opportunities
   res.locals.metrics.date = new Date()
   await db.query('INSERT INTO metrics (url, ttfb, fcp, lcp, nsl, bs) ' + `VALUES ('${url}', ${ttfb}, ${fcp}, ${lcp}, ${nsl}, '${bundleSize}')`);
+  
+  await db.query('INSERT INTO diagnostics (performance_score, diagnostics_info) ' + `VALUES (${performanceScore}, '${opportunities}')`)
   next()
 };
 
