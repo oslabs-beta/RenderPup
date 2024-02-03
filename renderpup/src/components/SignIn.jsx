@@ -35,7 +35,7 @@ const defaultTheme = createTheme();
 
 export default function SignIn({onFormSwitch}) {
   //useNavigate hook to navigate to different react components
-  const history = useNavigate();
+  const navigate = useNavigate();
   // const [redirectUrl, setRedirectUrl] = useState(null);
 
   // useEffect(() => {
@@ -78,7 +78,7 @@ export default function SignIn({onFormSwitch}) {
       .then(async data => {
         const response = await data.json();
         if (response === true) {
-          history('/dashboard')
+          navigate('/dashboard')
           // onFormSwitch
         } else {
           console.log('Incorrect username or password');

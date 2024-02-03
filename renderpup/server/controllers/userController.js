@@ -40,6 +40,17 @@ userController.verifyUser = async (req, res, next) => {
     err}))
   } 
 
+  userController.deleteCookie = (req, res, next) => {
+    const token = req.cookies.token;
+    if (token) {
+    res.clearCookie('token', {
+      httpOnly: true,
+      secure: true
+    })
+  }
+    return next();
+  }
+
 // userController.checkCookies = (req, res, next) => {
 //   const cookie = req.cookies.token;
 //   console.log('IN CHECK COOKIES')
