@@ -38,11 +38,6 @@ const dashboard = ({updateState, currState, urlList}) => {
       .then(response => {
         setLoading(false);
         //then checks of status code is ok (200-299); if not, throw 404 error
-<<<<<<< HEAD
-=======
-
-        
->>>>>>> dev
         if (!response.ok) {
           console.error(`Network response is not rendering, ${response.status} error`)
           throw new Error('response not ok')
