@@ -16,7 +16,6 @@ const dashboard = ({updateState, currState, urlList}) => {
 
   const handleWebsite = async (url) => {
     const data = await getExistingData(url)
-    console.log(`Metrics for ${url}`, data)
     // setOpen(false);
   };
 
@@ -39,8 +38,6 @@ const dashboard = ({updateState, currState, urlList}) => {
       .then(response => {
         setLoading(false);
         //then checks of status code is ok (200-299); if not, throw 404 error
-
-        
         if (!response.ok) {
           console.error(`Network response is not rendering, ${response.status} error`)
           throw new Error('response not ok')
@@ -143,7 +140,7 @@ const dashboard = ({updateState, currState, urlList}) => {
               {/* <li className="site-name2"></li> */}
               {/* <button onClick={handleWebsite2}>2nd Website</button> */}
             </ul>
-          ) : null}    
+          ) : null}
         </div>
     </div>
   );

@@ -65,14 +65,14 @@ const DashboardTwo = ({ updateState, currState, urlList }) => {
       //use useState to access TTFB 
       .then(async data => {
         if (currState.data[0].url === 0) {
-          const strippedUrl = data.data.url.slice(0, data.data.url.length - 1)
+          const strippedUrl = data.data.metrics.url.slice(0, data.data.metrics.url.length - 1)
           await getExistingData(strippedUrl)
         }
-        else if (data.data.url === currState.data[0].url) {
+        else if (data.data.metrics.url === currState.data[0].url) {
           // in order to return data back as mutable, take all data from currState as indiv elements (spread) 
           // & make new arr tempArr to store it in to be able to update state 
           const tempArr = [...currState.data]
-          tempArr.push(data.data)
+          tempArr.push(data.data.metrics)
           const newData = {data: tempArr}
           // updates state with new data from post req that's in the same format as initial state (refer to app) 
           updateState(newData)

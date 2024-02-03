@@ -19,7 +19,7 @@ const App = () => {
   // use state to set initial state of form 
   const [currentForm, setCurrentForm] = useState('login');
   //have initial state to be the same format that's returned from the server
-  const [chartData, setData] = useState({data:[{url:0}]});
+  const [chartData, setData] = useState({data:[{url:0, bs: [0]}]});
   const [urls, setUrls] = useState(new Set());
   //use toggleForm to change current state (login) to SignIn
   const toggleForm = (formName) => {
@@ -120,6 +120,7 @@ return (
               {<Bargraph data={chartData} convertDate={convertDate} />}
               {<LineChartTTFB data={chartData} convertDate={convertDate} />}
               {<LineChartNSL data={chartData} convertDate={convertDate} />}
+              {<Doughnut data={chartData} convertDate={convertDate} />}
             </div>
           </div>
         } />
