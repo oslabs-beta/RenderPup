@@ -10,7 +10,7 @@ import BubbleChart from './BubbleChart';
 
 const App = () => {
   //have initial state to be the same format that's returned from the server
-  const [chartData, setData] = useState({data:[{url:0}]});
+  const [chartData, setData] = useState({data:[{url:0, bs: [0]}]});
   const [urls, setUrls] = useState(new Set())
   
   function convertDate(date) {
@@ -58,7 +58,8 @@ const App = () => {
         <div id='graphs'>
           {<Bargraph data={chartData} convertDate={convertDate} />}    
           {<LineChartTTFB data={chartData} convertDate={convertDate} />}  
-          {<LineChartNSL data={chartData} convertDate={convertDate} />} 
+          {<LineChartNSL data={chartData} convertDate={convertDate} />}
+          {<Doughnut data={chartData} convertDate={convertDate} />}
         </div>
       </div>
   )
