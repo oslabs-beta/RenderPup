@@ -120,7 +120,7 @@ const DashboardTwo = ({ updateState, currState, urlList }) => {
 
   return (
     <div>
-      <AppBar position="static" sx={{ bgcolor: '#006CB7'}}>
+      <AppBar position="static" sx={{ bgcolor: '#0496FA'}}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
           <Box sx={{ display: 'flex', alignItems: 'center', mr: 2 }}>
