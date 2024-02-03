@@ -14,6 +14,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
+import renderpup from '../../public/renderpup.png';
 
 function Copyright(props) {
   return (
@@ -34,7 +35,7 @@ const defaultTheme = createTheme();
 
 export default function SignIn({onFormSwitch}) {
   //useNavigate hook to navigate to different react components
-  const history = useNavigate();
+  const navigate = useNavigate();
   // const [redirectUrl, setRedirectUrl] = useState(null);
 
   // useEffect(() => {
@@ -64,10 +65,6 @@ export default function SignIn({onFormSwitch}) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
 
     fetch('/api/login', {
       method: 'POST',
@@ -80,12 +77,8 @@ export default function SignIn({onFormSwitch}) {
       })
       .then(async data => {
         const response = await data.json();
-        console.log('response:', response);
-        console.log('redirecting to dashboard: ', data)
         if (response === true) {
-          console.log('response:', response);
-          console.log('redirecting to dashboard')
-          history('/dashboard')
+          navigate('/dashboard')
           // onFormSwitch
         } else {
           console.log('Incorrect username or password');
@@ -99,76 +92,83 @@ export default function SignIn({onFormSwitch}) {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="username"
-              label="Username"
-              name="username"
-              autoComplete="username"
-              autoFocus
+    <div>
+      <ThemeProvider theme={defaultTheme}>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <Box
+            sx={{
+              marginTop: 8,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            
+            {/* have signin page render renderpup logo */}
+            <Avatar
+              sx={{ m: 1, bgcolor: 'secondary.main' }}
+              src={renderpup}
+              alt="dogFetchingBall"
             />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
+            
+            <Typography component="h1" variant="h5">
+              Sign in
+            </Typography>
+            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
+                autoFocus
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign In
+              </Button>
+              <Grid container>
+                <Grid item xs>
+                  <Link href="#" variant="body2">
+                    Forgot password?
+                  </Link>
+                </Grid>
+                <Grid item>
 
-                <Link href="#" variant="body2">
-                <span onClick={() => onFormSwitch('signup')}>
-                {"Don't have an account? Sign up!"}
-                </span>
-                </Link>
-    
+                  <Link href="#" variant="body2">
+                  <span onClick={() => onFormSwitch('signup')}>
+                  {"Don't have an account? Sign up!"}
+                  </span>
+                  </Link>
+      
+                </Grid>
               </Grid>
-            </Grid>
+            </Box>
           </Box>
-        </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
-      </Container>
-    </ThemeProvider>
+          <Copyright sx={{ mt: 8, mb: 4 }} />
+        </Container>
+      </ThemeProvider>
+    </div>
   );
 }

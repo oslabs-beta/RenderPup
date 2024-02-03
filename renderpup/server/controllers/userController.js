@@ -26,7 +26,6 @@ userController.verifyUser = async (req, res, next) => {
 
   const { username, password } = req.body;
   const inputPassword = password;
-  console.log('before query');
   db.query(`SELECT password FROM users WHERE username = '${username}' `)
     .then( async (hashPassword) => {
       res.locals.passwordMatches = await bcrypt.compare(inputPassword, hashPassword.rows[0].password);
@@ -40,6 +39,17 @@ userController.verifyUser = async (req, res, next) => {
     message: { err: 'An error occurred during login' },
     err}))
   } 
+
+  userController.deleteCookie = (req, res, next) => {
+    const token = req.cookies.token;
+    if (token) {
+    res.clearCookie('token', {
+      httpOnly: true,
+      secure: true
+    })
+  }
+    return next();
+  }
 
 // userController.checkCookies = (req, res, next) => {
 //   const cookie = req.cookies.token;

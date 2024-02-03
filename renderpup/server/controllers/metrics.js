@@ -46,7 +46,6 @@ metricsController.timeToFirstByte = async (req, res, next) => {
 }
 
 metricsController.getDatabaseData = async (req, res, next) => {
-  console.log('in get database data: ', req.body)
   //Selects all data from the metrics table and attaches the rows to the res.locals object
   const data = await db.query(`SELECT * FROM metrics WHERE url='${req.body.url}/'`)
   // const data = await db.query('SELECT ttfb, fcp, lcp, nsl FROM metrics WHERE url = $1', [url])
@@ -56,7 +55,6 @@ metricsController.getDatabaseData = async (req, res, next) => {
 }
 
 metricsController.getUrls = async (req, res, next) => {
-  console.log('here in get urls middleware')
   //Selects all data from the metrics table and attaches the rows to the res.locals object
   const data = await db.query('SELECT url FROM metrics')
   // const data = await db.query('SELECT ttfb, fcp, lcp, nsl FROM metrics WHERE url = $1', [url])
@@ -72,8 +70,6 @@ metricsController.saveMetrics = async (req, res, next) => {
   // const diagnostics = res.locals.diagnostics
   const opportunities = res.locals.opportunities
   res.locals.metrics.date = new Date()
-  // console.log('url:', url, 'fcp:', fcp, 'lcp:', lcp);
-  // await db.query('INSERT INTO test (url, ttfb, fcp, lcp, date)' + `VALUES ('${url}', ${ttfb}, ${fcp}, ${lcp}, NOW())`);
   await db.query('INSERT INTO metrics (url, ttfb, fcp, lcp, nsl) ' + `VALUES ('${url}', ${ttfb}, ${fcp}, ${lcp}, ${nsl})`);
   
   await db.query('INSERT INTO diagnostics (performance_score, diagnostics_info) ' + `VALUES (${performanceScore}, '${opportunities}')`)

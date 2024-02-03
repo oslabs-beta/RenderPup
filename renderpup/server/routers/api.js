@@ -11,20 +11,24 @@ router.post('/', metricsController.timeToFirstByte, lighthouseController.analyze
 })
 
 router.get('/', metricsController.getUrls, (req, res) => {
-  return res.status(200).json({urls: res.locals.urls})
+  return res.status(200).json({urls: res.locals.urls});
 })
 
 //handles getting database info on page load
 router.post('/urls', metricsController.getDatabaseData, (req, res) => {
-  return res.status(200).json({data: res.locals.databaseData})
+  return res.status(200).json({data: res.locals.databaseData});
 })
 
 router.post('/login', userController.verifyUser, (req, res) => {
-  return res.status(200).json(res.locals.passwordMatches)
+  return res.status(200).json(res.locals.passwordMatches);
 })
 
 router.post('/signup', userController.createUser, (req, res) => {
-  return res.status(200).json(res.locals.userCreated)
+  return res.status(200).json(res.locals.userCreated);
+})
+
+router.post('/logout', userController.deleteCookie, (req, res) => {
+  return res.status(200).json({ success: true, message: 'Logout successful' });
 })
 
 

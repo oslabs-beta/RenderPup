@@ -39,7 +39,8 @@ const dashboard = ({updateState, currState, urlList}) => {
       .then(response => {
         setLoading(false);
         //then checks of status code is ok (200-299); if not, throw 404 error
-        console.log(response)
+
+        
         if (!response.ok) {
           console.error(`Network response is not rendering, ${response.status} error`)
           throw new Error('response not ok')
@@ -69,7 +70,6 @@ const dashboard = ({updateState, currState, urlList}) => {
   }
 
   function getExistingData(currUrl) {
-    console.log('in Fetch d')
     // make a http request to /api
     fetch('/api/urls', {
       method: 'POST',
@@ -88,8 +88,6 @@ const dashboard = ({updateState, currState, urlList}) => {
       })
       //use useState to access TTFB 
       .then(data => {
-        // console.log("SEE YOUR DATA", data);
-        console.log('heres the data: ', data)
         updateState(data);
       })
       .catch(error => {
@@ -98,8 +96,6 @@ const dashboard = ({updateState, currState, urlList}) => {
   }
 
   const buttons = []
-  console.log('buttons:', buttons);
-  console.log('urlList:', urlList);
   const urls = Array.from(urlList)
   for (let i = 0; i < urls.length; i++) {
     // buttons.push(<li className="site-name"></li>)
@@ -109,33 +105,33 @@ const dashboard = ({updateState, currState, urlList}) => {
   const loadingDog = <img id='loadingDog' src={runningDog}></img>;
 
   return (
-    <div>
-      {/* <Navbar /> */}
+      <div>
+        {/* <Navbar /> */}
       <h1> RenderPup</h1>
-      <div className="slogan">
-      
-      <img id='dogFetchingBall' src={image_png} alt="dogFetchingBall" />
-      <h3>Sniffing Out Performance and Fetching Results!</h3>
-      </div>
-      
-      <div className="logoAndSearch">
-      <img id='logo' src={renderpup} alt="logo" />
-      <form className='app-form'>
-        <label>
-          <input className='app-input-field' type='text' name='url' placeholder="Search URL"/>
-        </label>
-      </form><br/>
+        <div className="slogan">
+        
+        <img id='dogFetchingBall' src={image_png} alt="dogFetchingBall" />
+        <h3>Sniffing Out Performance and Fetching Results!</h3>
+        </div>
+        
+        <div className="logoAndSearch">
+        <img id='logo' src={renderpup} alt="logo" />
+        <form className='app-form'>
+          <label>
+            <input className='app-input-field' type='text' name='url' placeholder="Search URL"/>
+          </label>
+        </form><br/>
 
         <button className='go-fetch-bttn' type='button' onClick={getNewData}>Go Fetch</button>
 
-      </div>
-      
-        { loading ? (
-          <div id='loadingPage'>
-            <p>Fetching...</p>
-            {loadingDog} 
-          </div>
-          ) : null}
+        </div>
+        
+          { loading ? (
+            <div id='loadingPage'>
+              <p>Fetching...</p>
+              {loadingDog} 
+            </div>
+            ) : null}
 
         <div className ="dropdown">
           <button onClick={handleOpen}>Fetch Performance Metrics from Websites Saved on Your Database!</button>
@@ -149,7 +145,6 @@ const dashboard = ({updateState, currState, urlList}) => {
             </ul>
           ) : null}    
         </div>
-     
     </div>
   );
 };
