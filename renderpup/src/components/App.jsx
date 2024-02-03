@@ -20,7 +20,7 @@ const App = () => {
   const [currentForm, setCurrentForm] = useState('login');
   //have initial state to be the same format that's returned from the server
   const [chartData, setData] = useState({data:[{url:0, bs: [0]}]});
-  const [urls, setUrls] = useState(new Set());
+  // const [urls, setUrls] = useState(new Set());
   //use toggleForm to change current state (login) to SignIn
   const toggleForm = (formName) => {
     // to prevent entire page from being reloaded 
@@ -69,29 +69,30 @@ const App = () => {
 
 
 
-useEffect(() => {
+// useEffect(() => {
   
-  function fetchUrls() {
-    fetch('/api')
-    .then(response => response.json())
-    .then(data => {
-      let newUrl
-      const uniqueUrls = new Set()
-      for (const url of data.urls) {
-        if (url.url[url.url.length - 1] === '/') {
-          const tempArr = url.url.split('')
-          tempArr.splice(url.url.length - 1, 1)
-          newUrl = tempArr.join('')
-        }
-        uniqueUrls.add(newUrl)
-      }
-      setUrls(uniqueUrls)
-    })
-    .catch(err => console.log('error in fetchUrls', err))
-  }
-  
-  fetchUrls()
-}, []);
+//   function fetchUrls() {
+//     fetch('/api')
+//     .then(response => response.json())
+//     .then(data => {
+//       let newUrl
+//       const uniqueUrls = new Set()
+//       for (const url of data.urls) {
+//         if (url.url[url.url.length - 1] === '/') {
+//           const tempArr = url.url.split('')
+//           tempArr.splice(url.url.length - 1, 1)
+//           newUrl = tempArr.join('')
+//         }
+//         uniqueUrls.add(newUrl)
+//       }
+//       console.log('is cookies?: ',document.cookie.userId)
+//       setUrls(uniqueUrls)
+//     })
+//     .catch(err => console.log('error in fetchUrls', err))
+//   }
+
+//   fetchUrls()
+// }, []);
 
 function convertDate(date) {
   if (date === undefined) return
@@ -114,7 +115,7 @@ return (
         <Route path="/" element={<>{currentForm === "login" ? <SignIn onFormSwitch={toggleForm} /> : <SignUp onFormSwitch={toggleForm} />}</>} />
         <Route path="/dashboard" element={
           <div className="drop-down-menu">
-            <DashboardTwo updateState={setData} currState={chartData} urlList={urls} />
+            <DashboardTwo updateState={setData} currState={chartData} />
             <br />
             <div id='graphs'>
               {<Bargraph data={chartData} convertDate={convertDate} />}

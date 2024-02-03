@@ -1,14 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AppBar, Toolbar, Button, Typography, Container, Menu, MenuItem, Box } from '@mui/material';
 import '../stylesheets/dashboard.css';
 import image_png from '../../public/image_png.png';
 import renderpup from '../../public/renderpup.png';
 import runningDog from '../../public/runningDog.gif';
 
-const DashboardTwo = ({ updateState, currState, urlList }) => {
+const DashboardTwo = ({ updateState, currState }) => {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null); // For controlling the position of the dropdown
   const [loading, setLoading] = useState(false);
+  const [urlList, setUrls] = useState(new Set());
+
+  useEffect(() => {
+  
+    function fetchUrls() {
+      fetch('/api')
+      .then(response => response.json())
+      .then(data => {
+        let newUrl
+        const uniqueUrls = new Set()
+        for (const url of data.urls) {
+          if (url.url[url.url.length - 1] === '/') {
+            const tempArr = url.url.split('')
+            tempArr.splice(url.url.length - 1, 1)
+            newUrl = tempArr.join('')
+          }
+          uniqueUrls.add(newUrl)
+        }
+        setUrls(uniqueUrls)
+      })
+      .catch(err => console.log('error in fetchUrls', err))
+    }
+  
+    fetchUrls()
+  }, [currState]);
 
   const handleOpen = (event) => {
     setAnchorEl(event.currentTarget);
