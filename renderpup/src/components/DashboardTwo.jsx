@@ -1,18 +1,37 @@
 import React, { useState } from "react";
+import { AppBar, Toolbar, Button, Typography, Container, Menu, MenuItem, Box } from '@mui/material';
 import '../stylesheets/dashboard.css';
 import image_png from '../../public/image_png.png';
 import renderpup from '../../public/renderpup.png';
 import runningDog from '../../public/runningDog.gif';
-// import Navbar from './Navbar';
 
-const dashboard = ({updateState, currState, urlList}) => {
+const DashboardTwo = ({ updateState, currState, urlList }) => {
   const [open, setOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null); // For controlling the position of the dropdown
   const [loading, setLoading] = useState(false);
 
-  const handleOpen = () => {
+  const handleOpen = (event) => {
+    setAnchorEl(event.currentTarget);
     setOpen(!open);
-  }
+  };
 
+  const handleClose = () => {
+    setAnchorEl(null);
+    setOpen(false);
+  };
+
+  // const buttons = urlList.map((url, index) => (
+  //   <MenuItem key={index} onClick={() => handleWebsite(url)}>{url}</MenuItem>
+  // ));
+
+  const buttons = []
+  console.log('buttons:', buttons);
+  console.log('urlList:', urlList);
+  const urls = Array.from(urlList)
+  for (let i = 0; i < urls.length; i++) {
+    // buttons.push(<li className="site-name"></li>)
+    buttons.push(<MenuItem onClick={() => handleWebsite(`${urls[i]}`)} key={crypto.randomUUID()}>{`${urls[i]}`}</MenuItem>)
+  }
 
   const handleWebsite = async (url) => {
     const data = await getExistingData(url)
@@ -97,29 +116,42 @@ const dashboard = ({updateState, currState, urlList}) => {
       });
   }
 
-  const buttons = []
-  console.log('buttons:', buttons);
-  console.log('urlList:', urlList);
-  const urls = Array.from(urlList)
-  for (let i = 0; i < urls.length; i++) {
-    // buttons.push(<li className="site-name"></li>)
-    buttons.push(<button className='saved-urls' onClick={() => handleWebsite(`${urls[i]}`)} key={crypto.randomUUID()}>{`${urls[i]}`}</button>)
-  }
-
   const loadingDog = <img id='loadingDog' src={runningDog}></img>;
 
   return (
     <div>
-      {/* <Navbar /> */}
-      <h1> RenderPup</h1>
-      <div className="slogan">
+      <AppBar position="static" sx={{ bgcolor: '#006CB7'}}>
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+          <Box sx={{ display: 'flex', alignItems: 'center', mr: 2 }}>
+              <img src={renderpup} alt="logo" style={{ height: '50px' }} />
+            </Box>
+            <Typography variant="h6" sx={{ flexGrow: 1 }}>
+              RenderPup
+            </Typography>
+            <Button color="inherit" onClick={handleOpen}>
+              Fetch Metrics
+            </Button>
+            <Menu
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+            >
+              {buttons}
+            </Menu>
+          </Toolbar>
+        </Container>
+      </AppBar>
+
+      {/* <h1> RenderPup</h1> */}
+     <div className="slogan">
       
       <img id='dogFetchingBall' src={image_png} alt="dogFetchingBall" />
       <h3>Sniffing Out Performance and Fetching Results!</h3>
       </div>
       
       <div className="logoAndSearch">
-      <img id='logo' src={renderpup} alt="logo" />
+      {/* <img id='logo' src={renderpup} alt="logo" /> */}
       <form className='app-form'>
         <label>
           <input className='app-input-field' type='text' name='url' placeholder="Search URL"/>
@@ -136,22 +168,8 @@ const dashboard = ({updateState, currState, urlList}) => {
             {loadingDog} 
           </div>
           ) : null}
-
-        <div className ="dropdown">
-          <button onClick={handleOpen}>Fetch Performance Metrics from Websites Saved on Your Database!</button>
-          { open ? (
-            <ul className ="firstSite">
-              {buttons}
-              {/* <li className="site-name"></li> */}
-              {/* <button onClick={() => handleWebsite('1st website')}>1st Website</button>< br/><br/> */}
-              {/* <li className="site-name2"></li> */}
-              {/* <button onClick={handleWebsite2}>2nd Website</button> */}
-            </ul>
-          ) : null}    
-        </div>
-     
     </div>
   );
 };
 
-export default dashboard;
+export default DashboardTwo;
