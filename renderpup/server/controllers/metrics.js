@@ -66,14 +66,14 @@ metricsController.saveMetrics = async (req, res, next) => {
   // const userId = req.session.userId;
   // console.log('USER ID RIGHT HERE!!', userId)
   const { url } = req.body
-  const { ttfb, fcp, lcp, nsl, bundleSize } = res.locals.metrics
+  const { ttfb, fcp, lcp, nsl, bs } = res.locals.metrics
   const performanceScore = res.locals.performanceScore
   // const diagnostics = res.locals.diagnostics
   const opportunities = res.locals.opportunities
   res.locals.metrics.date = new Date()
-  await db.query('INSERT INTO metrics (url, ttfb, fcp, lcp, nsl, bs) ' + `VALUES ('${url}', ${ttfb}, ${fcp}, ${lcp}, ${nsl}, '${bundleSize}')`);
+  await db.query('INSERT INTO metrics (url, ttfb, fcp, lcp, nsl, bs) ' + `VALUES ('${url}', ${ttfb}, ${fcp}, ${lcp}, ${nsl}, '${JSON.stringify(bs)}')`);
   
-  await db.query('INSERT INTO diagnostics (performance_score, diagnostics_info) ' + `VALUES (${performanceScore}, '${opportunities}')`)
+  // await db.query('INSERT INTO diagnostics (performance_score, diagnostics_info) ' + `VALUES (${performanceScore}, '${opportunities}')`)
   next()
 };
 
@@ -210,7 +210,7 @@ metricsController.getScriptSize = async (req, res, next) => {
   try {
     const totalSize = await helpGetSize(res.locals.data)
     console.log('size: ', totalSize)
-    res.locals.metrics.bundleSize = JSON.stringify(totalSize)
+    res.locals.metrics.bs = totalSize
     next()
   }
   catch {
