@@ -2,7 +2,7 @@ import React, { useState, useEffect} from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Dashboard from './dashboard';
 import { Chart as ChartJS } from 'chart.js/auto';
-import Bargraph from './Bargraph';
+import Bargraph from './BarGraph';
 import Doughnut from './Doughnut';
 import LineChartTTFB from './LineChartTTFB';
 import LineChartNSL from './LineChartNSL';
@@ -10,6 +10,8 @@ import BubbleChart from './BubbleChart';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import { useNavigate } from 'react-router-dom';
+import DashboardTwo from './DashboardTwo';
+
 
 
 
@@ -112,7 +114,7 @@ return (
         <Route path="/" element={<>{currentForm === "login" ? <SignIn onFormSwitch={toggleForm} /> : <SignUp onFormSwitch={toggleForm} />}</>} />
         <Route path="/dashboard" element={
           <div className="drop-down-menu">
-            <Dashboard updateState={setData} currState={chartData} urlList={urls} />
+            <DashboardTwo updateState={setData} currState={chartData} urlList={urls} />
             <br />
             <div id='graphs'>
               {<Bargraph data={chartData} convertDate={convertDate} />}
