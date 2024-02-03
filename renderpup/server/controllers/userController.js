@@ -26,7 +26,6 @@ userController.verifyUser = async (req, res, next) => {
 
   const { username, password } = req.body;
   const inputPassword = password;
-  console.log('before query');
   db.query(`SELECT password FROM users WHERE username = '${username}' `)
     .then( async (hashPassword) => {
       res.locals.passwordMatches = await bcrypt.compare(inputPassword, hashPassword.rows[0].password);

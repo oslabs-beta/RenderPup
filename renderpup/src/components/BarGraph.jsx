@@ -3,7 +3,6 @@ import { Bar } from 'react-chartjs-2';
 
 const Bargraph = (props) => {
     const chartData = props.data.data
-    // console.log("bar graph DATA", chartData)
    const config = {
         labels: chartData.map(item => props.convertDate(item.date)),
         datasets: [

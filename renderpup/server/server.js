@@ -18,6 +18,10 @@ const apiRouter = require(path.resolve(__dirname, './routers/api.js'))
 
 app.use('/api', apiRouter)
 
+app.get('/dashboard', (req, res) => {
+  res.send('dashboard')
+})
+
 // app.get('/dashboard', userController.checkCookies, (req, res) => {
 //   console.log('IN GET DASHBOARD')
 //   //if cookie exists, redirect to dashboard
