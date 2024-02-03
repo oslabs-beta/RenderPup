@@ -2,7 +2,6 @@ import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 
 const doughnutChart = (props) => {
-    console.log("PROPS DATA", props.data)
     const chartData = props.data.data;
     const backgroundColors = [
       'rgba(7,123,247,1)',

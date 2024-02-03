@@ -5,7 +5,7 @@ const lighthouseController = require('../controllers/lighthouseController');
 const router = express.Router();
 
 //handles getting new website info on go fetch button click
-router.post('/', metricsController.timeToFirstByte, lighthouseController.analyzeUrl, metricsController.saveMetrics, (req, res) => {
+router.post('/', metricsController.timeToFirstByte, metricsController.getScriptSize, lighthouseController.analyzeUrl, metricsController.saveMetrics, (req, res) => {
   return res.status(200).json({data: res.locals.metrics, response: res.locals.data})
 })
 

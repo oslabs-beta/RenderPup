@@ -15,7 +15,6 @@ const dashboard = ({updateState, currState, urlList}) => {
 
   const handleWebsite = async (url) => {
     const data = await getExistingData(url)
-    console.log(`Metrics for ${url}`, data)
     // setOpen(false);
   };
 
@@ -38,7 +37,6 @@ const dashboard = ({updateState, currState, urlList}) => {
       .then(response => {
         setLoading(false);
         //then checks of status code is ok (200-299); if not, throw 404 error
-        console.log(response)
         if (!response.ok) {
           console.error(`Network response is not rendering, ${response.status} error`)
           throw new Error('response not ok')
@@ -64,7 +62,6 @@ const dashboard = ({updateState, currState, urlList}) => {
   }
 
   function getExistingData(currUrl) {
-    console.log('in Fetch d')
     // make a http request to /api
     fetch('/api/urls', {
       method: 'POST',
@@ -83,8 +80,6 @@ const dashboard = ({updateState, currState, urlList}) => {
       })
       //use useState to access TTFB 
       .then(data => {
-        // console.log("SEE YOUR DATA", data);
-        console.log('heres the data: ', data)
         updateState(data);
       })
       .catch(error => {
@@ -93,8 +88,6 @@ const dashboard = ({updateState, currState, urlList}) => {
   }
 
   const buttons = []
-  console.log('buttons:', buttons);
-  console.log('urlList:', urlList);
   const urls = Array.from(urlList)
   for (let i = 0; i < urls.length; i++) {
     // buttons.push(<li className="site-name"></li>)

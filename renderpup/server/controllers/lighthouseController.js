@@ -24,8 +24,7 @@ lighthouseController.analyzeUrl = async (req, res, next) => {
         // stretch feature to show these network requests on another page
         // also might be able to get bundle size from this info
         // const networkReqs = audits['network-requests'].details.items
-
-        console.log('FCP:', fcp, 'LCP:', lcp, 'NSL:', nsl)
+        
         return { fcp, lcp, nsl };
     };
 
