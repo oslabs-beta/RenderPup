@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AppBar, Toolbar, Button, Typography, Container, Menu, MenuItem, Box } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import '../stylesheets/dashboard.css';
 import image_png from '../../public/image_png.png';
 import renderpup from '../../public/renderpup.png';
@@ -10,6 +11,7 @@ const DashboardTwo = ({ updateState, currState }) => {
   const [anchorEl, setAnchorEl] = useState(null); // For controlling the position of the dropdown
   const [loading, setLoading] = useState(false);
   const [urlList, setUrls] = useState(new Set());
+  const navigate = useNavigate();
 
   useEffect(() => {
   
@@ -44,6 +46,12 @@ const DashboardTwo = ({ updateState, currState }) => {
     setAnchorEl(null);
     setOpen(false);
   };
+
+  const handleSignOut = () => {
+    navigate('/logout');
+  }
+
+
 
   // const buttons = urlList.map((url, index) => (
   //   <MenuItem key={index} onClick={() => handleWebsite(url)}>{url}</MenuItem>
@@ -151,6 +159,9 @@ const DashboardTwo = ({ updateState, currState }) => {
             </Typography>
             <Button color="inherit" onClick={handleOpen}>
               Fetch Metrics
+            </Button>
+            <Button color="inherit" onClick={handleSignOut}>
+            Sign Out
             </Button>
             <Menu
               anchorEl={anchorEl}

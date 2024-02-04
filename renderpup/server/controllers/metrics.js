@@ -34,14 +34,14 @@ metricsController.timeToFirstByte = async (req, res, next) => {
     const resultHtml = characters.join('');
 
     //stores the ttfb and response html on the res.locals object
-    res.locals.data = resultHtml
-    res.locals.metrics = {ttfb: totalTime / 1}
-    res.locals.metrics.url = req.body.url
+    res.locals.data = resultHtml;
+    res.locals.metrics = {ttfb: totalTime / 1};
+    res.locals.metrics.url = req.body.url;
 
-    next()
+    next();
   }
   catch(error) {
-    next({log: `invalid url: '${req.body.url}'`, status: 404, message: 'Please enter a valid url'})
+    next({log: `invalid url: '${req.body.url}'`, status: 404, message: 'Please enter a valid url'});
   }
 }
 
@@ -62,6 +62,8 @@ metricsController.getUrls = async (req, res, next) => {
 }
 
 metricsController.saveMetrics = async (req, res, next) => {
+  // const userId = req.session.userId;
+  // console.log('USER ID RIGHT HERE!!', userId)
   const { url } = req.body
   const { ttfb, fcp, lcp, nsl, bs } = res.locals.metrics
   const performanceScore = res.locals.performanceScore

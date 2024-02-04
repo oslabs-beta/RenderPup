@@ -112,7 +112,7 @@ return (
   <Router>
     <div>
       <Routes>
-        <Route path="/" element={<>{currentForm === "login" ? <SignIn onFormSwitch={toggleForm} /> : <SignUp onFormSwitch={toggleForm} />}</>} />
+        <Route path="/" element={<>{currentForm === "login" ? ( <SignIn onFormSwitch={toggleForm} /> ) : ( <SignUp onFormSwitch={toggleForm} />)}</> } />
         <Route path="/dashboard" element={
           <div className="drop-down-menu">
             <DashboardTwo updateState={setData} currState={chartData} />
