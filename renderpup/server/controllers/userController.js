@@ -50,6 +50,15 @@ userController.verifyUser = async (req, res, next) => {
     err}))
   } 
 
+  userController.createUserIdCookie = (req, res, next) => {
+    db.query(`SELECT _id FROM users WHERE username = '${req.body.username}'`)
+      .then(id => {
+        console.log('id: ', id.rows[0])
+        res.cookie('userId', id.rows[0]._id)
+        next()
+      })
+  }
+
   userController.deleteCookie = (req, res, next) => {
     const token = req.cookies.token;
     if (token) {

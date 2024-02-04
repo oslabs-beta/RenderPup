@@ -19,12 +19,12 @@ router.post('/urls', metricsController.getDatabaseData, (req, res) => {
   return res.status(200).json({data: res.locals.databaseData});
 })
 
-router.post('/login', userController.verifyUser, (req, res) => {
+router.post('/login', userController.verifyUser, userController.createUserIdCookie, (req, res) => {
   return res.status(200).json(res.locals.passwordMatches);
 })
 
-router.post('/signup', userController.createUser, (req, res) => {
-  return res.status(200).json({message: res.locals.userCreated, userId: res.locals.userId});
+router.post('/signup', userController.createUser, userController.createUserIdCookie, (req, res) => {
+  return res.status(200).json(res.locals.userCreated);
 })
 
 router.post('/logout', userController.deleteCookie, (req, res) => {
