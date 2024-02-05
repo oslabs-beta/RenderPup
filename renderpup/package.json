@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon ./server/server.js",
     "dev": "NODE_ENV=development webpack-dev-server --open --progress --color & nodemon ./server/server.js",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "test": "jest"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
@@ -36,8 +37,10 @@
     "dotenv": "^16.3.2",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.6.0",
+    "jest": "^29.7.0",
     "lighthouse": "^11.4.0",
     "style-loader": "^3.3.4",
+    "supertest": "^6.3.4",
     "url-loader": "^4.1.1",
     "webpack": "^5.89.0",
     "webpack-bundle-analyzer": "^4.10.1",
