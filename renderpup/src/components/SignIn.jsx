@@ -37,6 +37,12 @@ export default function SignIn({onFormSwitch}) {
   //useNavigate hook to navigate to different react components
   const navigate = useNavigate();
   // const [redirectUrl, setRedirectUrl] = useState(null);
+  useEffect(() => {
+    // console.log(sessionStorage)
+    if (sessionStorage.getItem('loggedIn') !== null) {
+      navigate(sessionStorage.getItem('loggedIn'))
+    }
+  }, [])
 
   // useEffect(() => {
   //   console.log('here?')

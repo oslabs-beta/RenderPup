@@ -1,14 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AppBar, Toolbar, Button, Typography, Container, Menu, MenuItem, Box } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import '../stylesheets/dashboard.css';
 import image_png from '../../public/image_png.png';
 import renderpup from '../../public/renderpup.png';
 import runningDog from '../../public/runningDog.gif';
 
-const DashboardTwo = ({ updateState, currState, urlList }) => {
+const DashboardTwo = ({ updateState, currState }) => {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null); // For controlling the position of the dropdown
   const [loading, setLoading] = useState(false);
+  const [urlList, setUrls] = useState(new Set());
+  const navigate = useNavigate();
+
+  useEffect(() => {
+  
+    function fetchUrls() {
+      fetch('/api')
+      .then(response => response.json())
+      .then(data => {
+        let newUrl
+        const uniqueUrls = new Set()
+        for (const url of data.urls) {
+          if (url.url[url.url.length - 1] === '/') {
+            const tempArr = url.url.split('')
+            tempArr.splice(url.url.length - 1, 1)
+            newUrl = tempArr.join('')
+          }
+          uniqueUrls.add(newUrl)
+        }
+        setUrls(uniqueUrls)
+      })
+      .catch(err => console.log('error in fetchUrls', err))
+    }
+  
+    fetchUrls()
+    sessionStorage.setItem("loggedIn", '/dashboard')
+  }, [currState]);
 
   const handleOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -19,6 +47,12 @@ const DashboardTwo = ({ updateState, currState, urlList }) => {
     setAnchorEl(null);
     setOpen(false);
   };
+
+  const handleSignOut = () => {
+    navigate('/logout');
+  }
+
+
 
   // const buttons = urlList.map((url, index) => (
   //   <MenuItem key={index} onClick={() => handleWebsite(url)}>{url}</MenuItem>
@@ -126,6 +160,9 @@ const DashboardTwo = ({ updateState, currState, urlList }) => {
             </Typography>
             <Button color="inherit" onClick={handleOpen}>
               Fetch Metrics
+            </Button>
+            <Button color="inherit" onClick={handleSignOut}>
+            Sign Out
             </Button>
             <Menu
               anchorEl={anchorEl}

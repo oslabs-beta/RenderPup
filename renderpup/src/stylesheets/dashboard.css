@@ -106,3 +106,16 @@ button {
 #loadingDog {
   height: 3em;
 }
+
+#logoutPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+}
+
+#loadingDog {
+  height: 20vh; /* Set the height of the GIF to 20% of the viewport height */
+  width: auto; /* Maintain the aspect ratio */
+}
+

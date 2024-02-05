@@ -34,20 +34,20 @@ metricsController.timeToFirstByte = async (req, res, next) => {
     const resultHtml = characters.join('');
 
     //stores the ttfb and response html on the res.locals object
-    res.locals.data = resultHtml
-    res.locals.metrics = {ttfb: totalTime / 1}
-    res.locals.metrics.url = req.body.url
+    res.locals.data = resultHtml;
+    res.locals.metrics = {ttfb: totalTime / 1};
+    res.locals.metrics.url = req.body.url;
 
-    next()
+    next();
   }
   catch(error) {
-    next({log: `invalid url: '${req.body.url}'`, status: 404, message: 'Please enter a valid url'})
+    next({log: `invalid url: '${req.body.url}'`, status: 404, message: 'Please enter a valid url'});
   }
 }
 
 metricsController.getDatabaseData = async (req, res, next) => {
   //Selects all data from the metrics table and attaches the rows to the res.locals object
-  const data = await db.query(`SELECT * FROM metrics WHERE url='${req.body.url}/'`)
+  const data = await db.query(`SELECT * FROM metrics WHERE url='${req.body.url}/' AND user_id=${req.cookies.userId}`)
   res.locals.databaseData = data.rows
   
   next()
@@ -55,22 +55,24 @@ metricsController.getDatabaseData = async (req, res, next) => {
 
 metricsController.getUrls = async (req, res, next) => {
   //Selects all urls from the metrics table and attaches the rows to the res.locals object
-  const data = await db.query('SELECT url FROM metrics')
+  const data = await db.query(`SELECT url FROM metrics WHERE user_id = '${req.cookies.userId}'`)
   res.locals.urls = data.rows
   
   next()
 }
 
 metricsController.saveMetrics = async (req, res, next) => {
+  // const userId = req.session.userId;
+  // console.log('USER ID RIGHT HERE!!', userId)
   const { url } = req.body
   const { ttfb, fcp, lcp, nsl, bs } = res.locals.metrics
   const performanceScore = res.locals.performanceScore
   // const diagnostics = res.locals.diagnostics
   const opportunities = res.locals.opportunities
   res.locals.metrics.date = new Date()
-  await db.query('INSERT INTO metrics (url, ttfb, fcp, lcp, nsl, bs) ' + `VALUES ('${url}', ${ttfb}, ${fcp}, ${lcp}, ${nsl}, '${JSON.stringify(bs)}')`);
+  await db.query('INSERT INTO metrics (url, user_id, ttfb, fcp, lcp, nsl, bs) ' + `VALUES ('${url}', ${req.cookies.userId}, ${ttfb}, ${fcp}, ${lcp}, ${nsl}, '${JSON.stringify(bs)}')`);
   
-  // await db.query('INSERT INTO diagnostics (performance_score, diagnostics_info) ' + `VALUES (${performanceScore}, '${opportunities}')`)
+  // await db.query('INSERT INTO diagnostics (performance_score, diagnostics_info, url) ' + `VALUES (${performanceScore}, '${opportunities}', '${url}')`)
   next()
 };
 

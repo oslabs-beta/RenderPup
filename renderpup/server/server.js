@@ -19,7 +19,7 @@ const apiRouter = require(path.resolve(__dirname, './routers/api.js'))
 app.use('/api', apiRouter)
 
 app.get('/dashboard', (req, res) => {
-  res.send('dashboard')
+  res.redirect('/')
 })
 
 // app.get('/dashboard', userController.checkCookies, (req, res) => {
