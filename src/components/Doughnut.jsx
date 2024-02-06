@@ -3,10 +3,8 @@ import { Doughnut } from 'react-chartjs-2';
 
 const doughnutChart = (props) => {
     const chartData = props.data.data[props.data.data.length - 1].bs;
-    console.log(chartData)
     const keys = Object.keys(chartData)
     const values = Object.values(chartData)
-    console.log(keys, values)
     const backgroundColors = [
       'rgba(7,123,247,1)',
       'rgba(255,99,132,1)',

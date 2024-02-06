@@ -6,7 +6,7 @@ import image_png from '../../public/image_png.png';
 import renderpup from '../../public/renderpup.png';
 import runningDog from '../../public/runningDog.gif';
 
-const DashboardTwo = ({ updateState, currState }) => {
+const Dashboard = ({ updateState, currState }) => {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null); // For controlling the position of the dropdown
   const [loading, setLoading] = useState(false);
@@ -144,7 +144,7 @@ const DashboardTwo = ({ updateState, currState }) => {
       });
   }
 
-  const loadingDog = <img id='loadingDog' src={runningDog}></img>;
+  const fetchingDog = <img id='runningDog' src={runningDog}></img>;
 
   return (
     <div>
@@ -196,11 +196,11 @@ const DashboardTwo = ({ updateState, currState }) => {
         { loading ? (
           <div id='loadingPage'>
             <p>Fetching...</p>
-            {loadingDog} 
+            {fetchingDog} 
           </div>
           ) : null}
     </div>
   );
 };
 
-export default DashboardTwo;
+export default Dashboard;

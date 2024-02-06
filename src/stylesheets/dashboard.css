@@ -101,10 +101,11 @@ button {
 #loadingPage {
   display: flex;
   justify-content: center;
+  align-items: flex-end;
 }
 
-#loadingDog {
-  height: 3em;
+#runningDog {
+  height: 4em;
 }
 
 #logoutPage {
@@ -114,7 +115,7 @@ button {
   height: 100vh; 
 }
 
-#loadingDog {
+#logoutDog {
   height: 20vh; /* Set the height of the GIF to 20% of the viewport height */
   width: auto; /* Maintain the aspect ratio */
 }
