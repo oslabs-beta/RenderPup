@@ -153,7 +153,7 @@ const DashboardTwo = ({ updateState, currState }) => {
   const loadingDog = <img id='loadingDog' src={runningDog}></img>;
 
   return (
-    <div data-testid='app-component'>
+    <div data-testid='dashboard-component'>
     <div>
       <AppBar position="static" sx={{ bgcolor: '#0496FA'}}>
         <Container maxWidth="xl">

@@ -9,4 +9,7 @@ module.exports = {
         '<rootDir>/__mocks__/fileMock.js',
       '\\.(s?css|less)$': 'identity-obj-proxy',
     },
+    globals: {
+      fetch: global.fetch,
+    }
   };

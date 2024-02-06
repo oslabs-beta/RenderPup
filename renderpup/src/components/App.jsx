@@ -10,7 +10,6 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 import Logout from './Logout';
 // import About from './About';
-import { useNavigate } from 'react-router-dom';
 import DashboardTwo from './DashboardTwo';
 
 

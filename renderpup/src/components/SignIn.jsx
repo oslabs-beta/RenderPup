@@ -65,7 +65,6 @@ export default function SignIn({onFormSwitch}) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-
     fetch('/api/login', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
