@@ -20,11 +20,8 @@ const App = () => {
   const [currentForm, setCurrentForm] = useState('login');
   //have initial state to be the same format that's returned from the server
   const [chartData, setData] = useState({data:[{url:0, bs: {DummyData: 1}}]});
-  // const [urls, setUrls] = useState(new Set());
   //use toggleForm to change current state (login) to SignIn
   const toggleForm = (formName) => {
-    // to prevent entire page from being reloaded 
-    // e.preventDefault();
     setCurrentForm(formName);
   };
 

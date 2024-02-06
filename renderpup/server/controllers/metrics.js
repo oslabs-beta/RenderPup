@@ -62,8 +62,6 @@ metricsController.getUrls = async (req, res, next) => {
 }
 
 metricsController.saveMetrics = async (req, res, next) => {
-  // const userId = req.session.userId;
-  // console.log('USER ID RIGHT HERE!!', userId)
   const { url } = req.body
   const { ttfb, fcp, lcp, nsl, bs } = res.locals.metrics
   const performanceScore = res.locals.performanceScore
@@ -71,8 +69,6 @@ metricsController.saveMetrics = async (req, res, next) => {
   const opportunities = res.locals.opportunities
   res.locals.metrics.date = new Date()
   await db.query('INSERT INTO metrics (url, user_id, ttfb, fcp, lcp, nsl, bs) ' + `VALUES ('${url}', ${req.cookies.userId}, ${ttfb}, ${fcp}, ${lcp}, ${nsl}, '${JSON.stringify(bs)}')`);
-  
-  // await db.query('INSERT INTO diagnostics (performance_score, diagnostics_info, url) ' + `VALUES (${performanceScore}, '${opportunities}', '${url}')`)
   next()
 };
 
@@ -130,14 +126,12 @@ metricsController.getScriptSize = async (req, res, next) => {
 
               //deals with if the src is the complete url to fetch
               if (currSrc[0] === 'h') {
-                console.log(currSrc)
                 response = await fetch(currSrc)
                 fetchedUrl = currSrc
               }
 
               //deals with a url that just needs https attached to the beginning
               else if (currSrc[0] === '/' && currSrc[1] === '/') {
-                console.log(`https:${currSrc}`)
                 response = await fetch(`https:${currSrc}`)
                 fetchedUrl = `https:${currSrc}`
               }
@@ -145,7 +139,6 @@ metricsController.getScriptSize = async (req, res, next) => {
               //deals with a url that is just attached to the url of the website we are testing
               else {
                 const url = req.body.url.split('').slice(0, req.body.url.length - 1).join('')
-                console.log(`${url}${currSrc}`)
                 response = await fetch(`${url}${currSrc}`)
                 fetchedUrl = `${url}${currSrc}`
               }
@@ -169,7 +162,6 @@ metricsController.getScriptSize = async (req, res, next) => {
               const resultJs = characters.join('');
 
               //adds javascript length to size and sizes variable
-              console.log(resultJs.length)
               size += resultJs.length
               sizes[fetchedUrl] = resultJs.length
 
@@ -192,7 +184,6 @@ metricsController.getScriptSize = async (req, res, next) => {
         strSlice = Html.slice(i, i + 9);
         if (strSlice.join('') === '</script>') {
           if (startScript) {
-            // console.log('end: ',strSlice)
             const thisSize = Html.slice(start, i).join('').length;
             size += thisSize
             sizes.root += thisSize
@@ -202,13 +193,11 @@ metricsController.getScriptSize = async (req, res, next) => {
         }
       }
     }
-    // console.log('sizes: ', sizes)
     return sizes
   }
 
   try {
     const totalSize = await helpGetSize(res.locals.data)
-    console.log('size: ', totalSize)
     res.locals.metrics.bs = totalSize
     next()
   }

@@ -36,37 +36,11 @@ const defaultTheme = createTheme();
 export default function SignIn({onFormSwitch}) {
   //useNavigate hook to navigate to different react components
   const navigate = useNavigate();
-  // const [redirectUrl, setRedirectUrl] = useState(null);
   useEffect(() => {
-    // console.log(sessionStorage)
     if (sessionStorage.getItem('loggedIn') !== null) {
       navigate(sessionStorage.getItem('loggedIn'))
     }
   }, [])
-
-  // useEffect(() => {
-  //   console.log('here?')
-  //   const fetchData = async () => {
-  //     console.log('in fetchdata')
-  //     try {
-  //       const response = await fetch('/dashboard');
-  //       const data = await response.json();
-  //       console.log('data!!!:', data);
-  //       console.log('here!!!')
-
-  //       if (data === '/'){
-  //         console.log('data.redirect:', data);
-  //         //redirects back to login
-  //         history(`${data}`);
-  //       }
-  //     } catch (error) {
-  //       console.error('Error fetching dashboard:', error);
-  //     }
-  //   };
-
-  //   fetchData();
-  //   console.log('meeeeee');
-  // }, [redirectUrl]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -85,7 +59,6 @@ export default function SignIn({onFormSwitch}) {
         const response = await data.json();
         if (response === true) {
           navigate('/dashboard')
-          // onFormSwitch
         } else {
           console.log('Incorrect username or password');
         }
@@ -93,7 +66,6 @@ export default function SignIn({onFormSwitch}) {
       .catch(err => {
         console.error(err, 'error when logging in')
       });
-    // history.navigate.push('/dashboard')
     
   };
 

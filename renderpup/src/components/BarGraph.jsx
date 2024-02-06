@@ -6,13 +6,6 @@ const Bargraph = (props) => {
    const config = {
         labels: chartData.map(item => props.convertDate(item.date)),
         datasets: [
-          // {
-          //   label: "Time to First Byte",
-          //   data: chartData.map(item => item.ttfb),
-          //   backgroundColor: 'rgba(7,123,247,1)',
-          //   borderColor: 'rgba(7,123,247,1)',
-          //   borderWidth: 1,
-          // },
           {
             label: "First Contentful Paint (FCP)",
             data: chartData.map(item => item.fcp),
@@ -23,8 +16,6 @@ const Bargraph = (props) => {
             hoverBackgroundColor: '#fb8500',
             hoverBorderColor: '#0077b6',
             hoverBorderWidth: 3,
-            // barPercentage: 0.75,
-            // categoryPercentage: 0.5,
           },
           {
             label: "Largest Contentful Paint (LCP)",
@@ -36,16 +27,7 @@ const Bargraph = (props) => {
             hoverBackgroundColor: '#03045e',
             hoverBorderColor: '#fb8500',
             hoverBorderWidth: 3,
-            // barPercentage: 0.75,
-            // categoryPercentage: 0.5,
           },
-          // {
-          //   label: "Network Server Latency",
-          //   data: chartData.map(item => item.nsl),
-          //   backgroundColor: 'rgba(7,123,247,1)',
-          //   borderColor: 'rgba(7,123,247,1)',
-          //   borderWidth: 1,
-          // },
         ],
       }
       const options = {

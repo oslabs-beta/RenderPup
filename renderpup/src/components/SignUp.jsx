@@ -40,11 +40,6 @@ export default function SignUp({onFormSwitch}) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    // history.navigate.push('/dashboard')
-    // history('/dashboard')
-  // };
-
-
     fetch('/api/signup', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -57,26 +52,13 @@ export default function SignUp({onFormSwitch}) {
           email: data.get('email')
         })
       })
-      // .then(data => {
-      //   return data.json()
-      // })
       .then(response => {
         return response.json();
       })
       .then(data => {
         history('/signin')
       })
-
-        // .then(response => {
-        //   //then checks of status code is ok (200-299); if not, throw 404 error
-        //   if (!response.ok) {
-        //     console.error(`Network response is not rendering, ${response.status} error`)
-        //     throw new Error('response not okay')
-        //   }
-        //   return response.json();
-        // })
-
-        .catch(err => console.error(err, 'Signup not successfull'))
+      .catch(err => console.error(err, 'Signup not successfull'))
   };
 
   return (

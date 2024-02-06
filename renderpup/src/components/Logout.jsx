@@ -25,7 +25,6 @@ const Logout = () => {
         const responseData = await response.json();
 
         if (responseData.success) {
-          console.log(responseData)
           sessionStorage.clear()
           setMessage('Logging out... goodbye!');
           
