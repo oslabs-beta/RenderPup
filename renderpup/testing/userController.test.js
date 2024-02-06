@@ -30,6 +30,9 @@ describe('User controller middleware', () => {
         app.post('/login', userController.verifyUser, (req, res) => {
             return res.status(200).json(res.locals.passwordMatches);
         });
+        app.post('/login', userController.createUserIdCookie, (req, res) => {
+            return res.status(200).json();
+        });
         app.post('/logout', userController.deleteCookie, (req, res) => {
             return res.status(200).json({ success: true, message: 'Logout successful' });
         });
@@ -72,6 +75,35 @@ describe('User controller middleware', () => {
             expect(response.statusCode).toBe(200);
             expect(bcrypt.compare).toHaveBeenCalledWith(user.password, 'hashedPassword');
             expect(db.query).toHaveBeenCalledWith(expect.stringContaining(user.username))
+        })
+    })
+
+    describe('createUserIdCookie', () => {
+        it('Should create a cookie with userId', async () => {
+            const user = {
+                username: 'charmie',
+                password: 'password'
+            };
+            db.query.mockResolvedValueOnce({ rows: [{_id: '1'}]});
+
+            const response = await supertest(app)
+            .post('/login')
+            .send(user)
+
+            expect(response.headers['set-cookie']).toBeDefined();
+            expect(response.statusCode).toBe(200);
+        })
+    })
+    describe('deleteCookie', () => {
+        it('should delete a cookie when logging out', async() => {
+
+            const response = await supertest(app)
+
+            .post('/logout')
+            .send('cookie')
+
+            expect(response.statusCode).toBe(200);
+            expect(response.body).toEqual({ success: true, message: 'Logout successful' })
         })
     })
 });

@@ -109,8 +109,12 @@ function convertDate(date) {
 }
 
 return (
-  <Router>
+  // create data-testid div to test for app component on testing file
+  <div data-testid='app-component'>
+    {/*  implement react router to  */}
+ 
     <div>
+      <Router>
       <Routes>
         <Route path="/" element={<>{currentForm === "login" ? ( <SignIn onFormSwitch={toggleForm} /> ) : ( <SignUp onFormSwitch={toggleForm} />)}</> } />
         <Route path="/dashboard" element={
@@ -128,8 +132,10 @@ return (
         <Route path="/signin" element={<SignIn />} />
         <Route path="/logout" element={<Logout />} />
       </Routes>
+      </Router>
     </div>
-  </Router>
+  
+  </div>
 );
 
 }

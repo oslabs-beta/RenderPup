@@ -6,6 +6,7 @@ import image_png from '../../public/image_png.png';
 import renderpup from '../../public/renderpup.png';
 import runningDog from '../../public/runningDog.gif';
 
+
 const DashboardTwo = ({ updateState, currState }) => {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null); // For controlling the position of the dropdown
@@ -147,6 +148,7 @@ const DashboardTwo = ({ updateState, currState }) => {
   const loadingDog = <img id='loadingDog' src={runningDog}></img>;
 
   return (
+    <div data-testid='app-component'>
     <div>
       <AppBar position="static" sx={{ bgcolor: '#0496FA'}}>
         <Container maxWidth="xl">
@@ -199,6 +201,7 @@ const DashboardTwo = ({ updateState, currState }) => {
             {loadingDog} 
           </div>
           ) : null}
+    </div>
     </div>
   );
 };

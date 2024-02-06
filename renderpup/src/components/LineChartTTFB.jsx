@@ -1,9 +1,13 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 
+//functional component to render a line chart for Time To First Byte
 const LineChartTTFB = ({data, convertDate}) => {
+    //extracting the data from the passed 'data' prop
     const chartData = data.data;
+    //configuration object for the line chart
     const config = {
+        //setting the labels for the x-axis by mapping over the date and converting date
         labels: chartData.map(item => convertDate(item.date)),
         datasets: [
             {
@@ -17,6 +21,7 @@ const LineChartTTFB = ({data, convertDate}) => {
             }
         ]
     }
+    //setting the options for the line chart, including the scales and titles
     const options = {
         scales: {
             x: {
@@ -39,6 +44,7 @@ const LineChartTTFB = ({data, convertDate}) => {
             }
         }
     }
+    //rendering the line chart with the configured data and options
     return (
         <div className="graphSizes">
         <Line 
