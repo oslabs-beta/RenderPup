@@ -37,6 +37,10 @@ const DashboardTwo = ({ updateState, currState }) => {
     fetchUrls()
   }, [currState]);
 
+  const handleAbout = () => {
+    navigate('/about');
+  }
+
   const handleOpen = (event) => {
     setAnchorEl(event.currentTarget);
     setOpen(!open);
@@ -50,6 +54,7 @@ const DashboardTwo = ({ updateState, currState }) => {
   const handleSignOut = () => {
     navigate('/logout');
   }
+
 
 
 

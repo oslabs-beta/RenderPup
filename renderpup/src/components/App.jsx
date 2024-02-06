@@ -9,6 +9,7 @@ import LineChartNSL from './LineChartNSL';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import Logout from './Logout';
+// import About from './About';
 import { useNavigate } from 'react-router-dom';
 import DashboardTwo from './DashboardTwo';
 
@@ -127,6 +128,7 @@ return (
         } />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/logout" element={<Logout />} />
+      
       </Routes>
     </div>
   </Router>
