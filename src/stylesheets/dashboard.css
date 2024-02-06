@@ -1,5 +1,4 @@
 body {
-
   background-image:radial-gradient(ellipse at center, rgb(234, 246, 255) 0%, rgb(220, 246, 255) 35%, #54cdf9 100%);
   background-attachment: fixed;
   font: 1em monaco;
@@ -35,7 +34,6 @@ h1{
 
 
 .go-fetch-bttn {
-  /* background-color: rgb(82, 82, 234); */
   background-color: #023047;
   color: white;
   border-radius: 0.4em;
@@ -45,7 +43,6 @@ h1{
 }
 
 button {
-  /* background-color: rgb(82, 82, 234); */
   background-color: #023047;
   color: white;
   border-radius: 0.4em;
@@ -79,7 +76,6 @@ button {
 }
 
 .saved-urls {
-  /* background-color: rgb(47, 134, 247); */
   background-color: #219ebc;
 }
 
