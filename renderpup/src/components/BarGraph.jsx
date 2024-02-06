@@ -1,19 +1,17 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 
+//functional component to render a bar graph
 const Bargraph = (props) => {
+  //extracting the data from the passed 'props.data' object
     const chartData = props.data.data
-   const config = {
+    //configuration object for the bar graph
+    const config = {
+      //setting the labels for the x-axis by mapping over tha data and coverted date
         labels: chartData.map(item => props.convertDate(item.date)),
         datasets: [
-          // {
-          //   label: "Time to First Byte",
-          //   data: chartData.map(item => item.ttfb),
-          //   backgroundColor: 'rgba(7,123,247,1)',
-          //   borderColor: 'rgba(7,123,247,1)',
-          //   borderWidth: 1,
-          // },
           {
+            //configuring the first dataset for FCP
             label: "First Contentful Paint (FCP)",
             data: chartData.map(item => item.fcp),
             backgroundColor: '#ffb703', 
@@ -23,10 +21,9 @@ const Bargraph = (props) => {
             hoverBackgroundColor: '#fb8500',
             hoverBorderColor: '#0077b6',
             hoverBorderWidth: 3,
-            // barPercentage: 0.75,
-            // categoryPercentage: 0.5,
           },
           {
+            //configuring the second dataset for LCP
             label: "Largest Contentful Paint (LCP)",
             data: chartData.map(item => item.lcp),
             backgroundColor: '#0077b6', 
@@ -36,18 +33,10 @@ const Bargraph = (props) => {
             hoverBackgroundColor: '#03045e',
             hoverBorderColor: '#fb8500',
             hoverBorderWidth: 3,
-            // barPercentage: 0.75,
-            // categoryPercentage: 0.5,
           },
-          // {
-          //   label: "Network Server Latency",
-          //   data: chartData.map(item => item.nsl),
-          //   backgroundColor: 'rgba(7,123,247,1)',
-          //   borderColor: 'rgba(7,123,247,1)',
-          //   borderWidth: 1,
-          // },
         ],
       }
+      //setting the options for the bar graph
       const options = {
         scales: {
             x: {
@@ -70,6 +59,7 @@ const Bargraph = (props) => {
             }
         }
     }
+    //rendering the bar graph with the configured data and options
   return (
     <div className="graphSizes">
     <Bar 
