@@ -49,11 +49,17 @@ git clone https://github.com/oslabs-beta/RenderPup.git
 ```sh
 npm i
 ```
-3.  Run the following command to ensure all dependancy updates are reflected:
+3.  Add postgreSQL connection string to PG_URI in .env file
+```sh
+PG_URI = <Your URI string>
+```
+4.  Add .env to .gitignore file for security before committing and pushing to github
+
+5.  Run the following command to ensure all dependancy updates are reflected:
 ```sh
 npm run build
 ```
-4.  Run the application in the root folder using the following command:
+6.  Run the application in the root folder using the following command:
 ```sh
 npm start
 ```
@@ -78,13 +84,13 @@ Running The Application
     <img src='./public/Check_Url.gif'/>
 </p>
 
-4.  View any web application url performance metrics previously searched by clicking the "Previous Metrics" button in the top right corner inside of the navigation bar:
+4.  View any web application url performance metrics previously searched by clicking the "Fetch Metrics" button in the top right corner inside of the navigation bar:
 
 <p align="center">
     <img src='./public/Fetch_Metrics.gif'/>
 </p>
 
--  To view updated performance metrics charts/data, navigate to the intended url in your "Previous Metrics" tab, followed by an additional run on said url in the input bar.  This will show the most recent metrics in combination with previous runs on said url for comparison.
+-  To view updated performance metrics charts/data, navigate to the intended url in your "Fetch Metrics" tab, followed by an additional run on said url in the input bar.  This will show the most recent metrics in combination with previous runs on said url for comparison.
 
 -  You may also hover over any graph data to view the singular metric data point.
 
@@ -145,32 +151,36 @@ Thank you for contributing to RenderPup! Your contributions help improve the per
         <br />
         <b>Tanner Robertson<b>
         <br />
-        <a href='https://github.com/XilloGen'>GitHub</a>
-        <a href='https://www.linkedin.com/in/tanner-robertson-3343a42a2/'>LinkedIn</a>
+          <a href='https://github.com/XilloGen'>🐙 GitHub</a>
+          <br>
+          <a href='https://www.linkedin.com/in/tanner-robertson-3343a42a2/'>🖇️ LinkedIn</a>
       </td>
       <td align='center'>
         <img src='public/Ariel.jpeg' width='140px' alt=''/>
         <br />
         <b>Ariel Maor<b>
         <br />
-        <a href='https://github.com/Amaor426'>GitHub</a>
-        <a href='https://www.linkedin.com/in/ariel-maor-aa419220/'>LinkedIn</a>
+        <a href='https://github.com/Amaor426'>🐙 GitHub</a>
+        <br>
+        <a href='https://www.linkedin.com/in/ariel-maor-aa419220/'>🖇️ LinkedIn</a>
       </td>
       <td align='center'>
         <img src='public/Charmie.jpeg' width='140px' alt=''/>
         <br />
         <b>Charmie Dubongco<b>
         <br />
-        <a href='https://github.com/charmieduhh'>GitHub</a>
-        <a href='https://www.linkedin.com/in/charmie-d-17293011b/'>LinkedIn</a>
+        <a href='https://github.com/charmieduhh'>🐙 GitHub</a>
+        <br>
+        <a href='https://www.linkedin.com/in/charmie-d-17293011b/'>🖇️ LinkedIn</a>
       </td>
       <td align='center'>
         <img src='public/Vicky.jpeg' width='140px' alt=''/>
         <br />
         <b>Vicky Hoang<b>
         <br />
-        <a href=''>GitHub</a>
-        <a href='https://www.linkedin.com/in/vkhoang/'>LinkedIn</a>
+        <a href='https://github.com/vkhoang'>🐙 GitHub</a>
+        <br>
+        <a href='https://www.linkedin.com/in/vkhoang/'>🖇️ LinkedIn</a>
       </td>
     </tr>
   </table>
