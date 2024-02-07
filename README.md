@@ -1,7 +1,7 @@
 # RenderPup
 
 <div align='center'>
-  <img src="renderpup/public/renderpup.png" alt="renderpup-logo" width=50%/>
+  <img src="public/renderpup.png" alt="renderpup-logo" width=50%/>
 </div>
 
 <div align='center'>
@@ -165,7 +165,7 @@ Thank you for contributing to RenderPup! Your contributions help improve the per
         <a href='https://www.linkedin.com/in/charmie-d-17293011b/'>LinkedIn</a>
       </td>
       <td align='center'>
-        <img src='public/Tanner.jpeg' width='140px' alt=''/>
+        <img src='public/Vicky.jpeg' width='140px' alt=''/>
         <br />
         <b>Vicky Hoang<b>
         <br />
