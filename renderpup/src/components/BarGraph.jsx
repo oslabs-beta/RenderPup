@@ -1,12 +1,17 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 
+//functional component to render a bar graph
 const Bargraph = (props) => {
+  //extracting the data from the passed 'props.data' object
     const chartData = props.data.data
-   const config = {
+    //configuration object for the bar graph
+    const config = {
+      //setting the labels for the x-axis by mapping over tha data and coverted date
         labels: chartData.map(item => props.convertDate(item.date)),
         datasets: [
           {
+            //configuring the first dataset for FCP
             label: "First Contentful Paint (FCP)",
             data: chartData.map(item => item.fcp),
             backgroundColor: '#ffb703', 
@@ -18,6 +23,7 @@ const Bargraph = (props) => {
             hoverBorderWidth: 3,
           },
           {
+            //configuring the second dataset for LCP
             label: "Largest Contentful Paint (LCP)",
             data: chartData.map(item => item.lcp),
             backgroundColor: '#0077b6', 
@@ -30,6 +36,7 @@ const Bargraph = (props) => {
           },
         ],
       }
+      //setting the options for the bar graph
       const options = {
         scales: {
             x: {
@@ -52,6 +59,7 @@ const Bargraph = (props) => {
             }
         }
     }
+    //rendering the bar graph with the configured data and options
   return (
     <div className="graphSizes">
     <Bar 

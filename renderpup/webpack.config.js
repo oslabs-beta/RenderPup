@@ -29,9 +29,9 @@ const config = {
         use: ['style-loader', 'css-loader'],
       },
         {
-         test: /\.(png|j?g|svg|gif)?$/,
-         loader: 'file-loader',
-        }
+          test: /\.(png|jpe?g|svg|gif)$/,
+         loader: 'file-loader'
+        },
     ]
   },
   plugins: [
