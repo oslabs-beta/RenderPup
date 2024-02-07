@@ -19,94 +19,25 @@ const App = () => {
   // use state to set initial state of form 
   const [currentForm, setCurrentForm] = useState('login');
   //have initial state to be the same format that's returned from the server
-  const [chartData, setData] = useState({data:[{url:0, bs: [0]}]});
-  // const [urls, setUrls] = useState(new Set());
+  const [chartData, setData] = useState({data:[{url:0, bs: {DummyData: 1}}]});
   //use toggleForm to change current state (login) to SignIn
   const toggleForm = (formName) => {
-    // to prevent entire page from being reloaded 
-    // e.preventDefault();
     setCurrentForm(formName);
   };
-  
 
-  const [redirectUrl, setRedirectUrl] = useState(null);
-  // // const history = useNavigate();
-  // useEffect(() => {
-    
-  //   fetch('/dashboard')
-  //     .then(async response => {
-  //       await response.json();
-  //       if(response) {
-  //         setRedirectUrl(response);
-  //       }
-  //     })
-  // },[])
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch('/dashboard');
-  //       const data = await response.json();
-  //       console.log('data:', data);
-
-  //       if (response.ok) {
-  //         history(data.redirectUrl);
-  //       }
-  //     } catch (error) {
-  //       console.error('Error fetching dashboard:', error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, [history]);
-
-  // useEffect(() => {
-
-  //   if (redirectUrl) {
-  //     history(redirectUrl);
-  //   }
-  // }, [redirectUrl, history])
-
-
-
-// useEffect(() => {
-  
-//   function fetchUrls() {
-//     fetch('/api')
-//     .then(response => response.json())
-//     .then(data => {
-//       let newUrl
-//       const uniqueUrls = new Set()
-//       for (const url of data.urls) {
-//         if (url.url[url.url.length - 1] === '/') {
-//           const tempArr = url.url.split('')
-//           tempArr.splice(url.url.length - 1, 1)
-//           newUrl = tempArr.join('')
-//         }
-//         uniqueUrls.add(newUrl)
-//       }
-//       console.log('is cookies?: ',document.cookie.userId)
-//       setUrls(uniqueUrls)
-//     })
-//     .catch(err => console.log('error in fetchUrls', err))
-//   }
-
-//   fetchUrls()
-// }, []);
-
-function convertDate(date) {
-  if (date === undefined) return
-  const dateArr = date.split('')
-  for (let i = 0; i < dateArr.length; i++) {
-    if (dateArr[i] == 'T') {
-      dateArr[i] = ' '
+  function convertDate(date) {
+    if (date === undefined) return
+    const dateArr = date.split('')
+    for (let i = 0; i < dateArr.length; i++) {
+      if (dateArr[i] == 'T') {
+        dateArr[i] = ' '
+      }
+      else if (dateArr[i] == '.') {
+        dateArr.splice(i, dateArr.length + 1)
+      }
     }
-    else if (dateArr[i] == '.') {
-      dateArr.splice(i, dateArr.length + 1)
-    }
+    return dateArr.join('')
   }
-  return dateArr.join('')
-}
 
 return (
   // create data-testid div to test for app component on testing file

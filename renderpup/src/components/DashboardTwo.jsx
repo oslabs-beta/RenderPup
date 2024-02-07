@@ -36,6 +36,7 @@ const DashboardTwo = ({ updateState, currState }) => {
     }
   
     fetchUrls()
+    sessionStorage.setItem("loggedIn", '/dashboard')
   }, [currState]);
 
   const handleOpen = (event) => {
@@ -51,12 +52,6 @@ const DashboardTwo = ({ updateState, currState }) => {
   const handleSignOut = () => {
     navigate('/logout');
   }
-
-
-
-  // const buttons = urlList.map((url, index) => (
-  //   <MenuItem key={index} onClick={() => handleWebsite(url)}>{url}</MenuItem>
-  // ));
 
   const buttons = []
 
@@ -108,7 +103,6 @@ const DashboardTwo = ({ updateState, currState }) => {
           const tempArr = [...currState.data]
           tempArr.push(data.data.metrics)
           const newData = {data: tempArr}
-          console.log(newData)
           // updates state with new data from post req that's in the same format as initial state (refer to app) 
           updateState(newData)
         }

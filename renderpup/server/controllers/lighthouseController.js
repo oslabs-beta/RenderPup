@@ -34,7 +34,7 @@ lighthouseController.analyzeUrl = async (req, res, next) => {
         const opportunities = [];
           if (audits) {
             Object.values(audits).forEach(audit => {
-        // Check if the audit is an opportunity and has potential savings
+            // Check if the audit is an opportunity and has potential savings
               if (audit.details && audit.details.type === 'opportunity' && audit.score !== 1 && audit.details.overallSavingsMs > 0) {
             opportunities.push(audit.description);
             }

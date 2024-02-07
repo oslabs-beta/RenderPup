@@ -25,7 +25,7 @@ const Logout = () => {
         const responseData = await response.json();
 
         if (responseData.success) {
-          console.log(responseData)
+          sessionStorage.clear()
           setMessage('Logging out... goodbye!');
           
           setTimeout(() => {
@@ -33,7 +33,7 @@ const Logout = () => {
             setMessage('')
             
           
-          navigate('/signin');
+          navigate('/');
         }, 3000) //4 sec delay before redirecting to signin
         } else {
           console.error('Logout failed:', responseData.message);
