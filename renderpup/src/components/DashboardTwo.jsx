@@ -41,6 +41,7 @@ const DashboardTwo = ({ updateState, currState }) => {
     }
   
     fetchUrls()
+    sessionStorage.setItem("loggedIn", '/dashboard')
   }, [currState]);
 
   //handleOpen function opens list of user's queries saved from database on 'fetch metrics' button on navbar
@@ -63,7 +64,6 @@ const DashboardTwo = ({ updateState, currState }) => {
     // navigate to logout component 
     navigate('/logout');
   }
-
 
   const buttons = []
 
@@ -116,7 +116,6 @@ const DashboardTwo = ({ updateState, currState }) => {
           const tempArr = [...currState.data]
           tempArr.push(data.data.metrics)
           const newData = {data: tempArr}
-          console.log(newData)
           // updates state with new data from post req that's in the same format as initial state (refer to app) 
           updateState(newData)
         }

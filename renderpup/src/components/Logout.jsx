@@ -25,15 +25,17 @@ const Logout = () => {
         const responseData = await response.json();
 
         if (responseData.success) {
-          // setMessage function that reassigns initial state to string below
+          // setMessage function that reassigns initial state to string below 
+          sessionStorage.clear()
           setMessage('Logging out... goodbye!');
           
           setTimeout(() => {
             //clear the message after timer ends
             setMessage('')
-            //redirect to signin component using usenavigate hook 
-            navigate('/signin');
-        }, 3000) //3 sec delay before redirecting to signin
+            
+          
+          navigate('/');
+        }, 3000) //4 sec delay before redirecting to signin
         } else {
           console.error('Logout failed:', responseData.message);
         }

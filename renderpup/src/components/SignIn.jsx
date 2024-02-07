@@ -36,6 +36,11 @@ const defaultTheme = createTheme();
 export default function SignIn({onFormSwitch}) {
   //useNavigate hook to navigate to different react components
   const navigate = useNavigate();
+  useEffect(() => {
+    if (sessionStorage.getItem('loggedIn') !== null) {
+      navigate(sessionStorage.getItem('loggedIn'))
+    }
+  }, [])
 
   // handle submit functionality to redirect to dashboard 
   const handleSubmit = (event) => {

@@ -16,8 +16,7 @@ const App = () => {
   // use state to set initial state of form 
   const [currentForm, setCurrentForm] = useState('login');
   //have initial state to be the same format that's returned from the server
-  const [chartData, setData] = useState({data:[{url:0, bs: [0]}]});
-
+  const [chartData, setData] = useState({data:[{url:0, bs: {DummyData: 1}}]});
   //use toggleForm to change current state (login) to SignIn
   const toggleForm = (formName) => {
     setCurrentForm(formName);
