@@ -56,7 +56,7 @@ const About = () => {
           </div>
 
             <div id="meet" style={{ alignItems: 'center', textAlign: 'center' }}> <br/> <br/>
-                Meet the engineers!
+            <h1 style={{ color: '#219ebc' }}>Meet the engineers!</h1>
             </div>
             <br/>
             <br/>
