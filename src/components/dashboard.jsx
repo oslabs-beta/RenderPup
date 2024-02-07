@@ -6,8 +6,7 @@ import image_png from '../../public/image_png.png';
 import renderpup from '../../public/renderpup.png';
 import runningDog from '../../public/runningDog.gif';
 
-//dashboard functionality to render 
-const DashboardTwo = ({ updateState, currState }) => {
+const Dashboard = ({ updateState, currState }) => {
   const [open, setOpen] = useState(false);
   // use state hook to control the position of the dropdown on 'Fetch Metrics' button in navbar
   const [anchorEl, setAnchorEl] = useState(null); 
@@ -153,7 +152,7 @@ const DashboardTwo = ({ updateState, currState }) => {
       });
   }
 
-  const loadingDog = <img id='loadingDog' src={runningDog}></img>;
+  const fetchingDog = <img id='runningDog' src={runningDog}></img>;
 
   return (
     //div testid for testing dashboardTwo
@@ -211,7 +210,7 @@ const DashboardTwo = ({ updateState, currState }) => {
         { loading ? (
           <div id='loadingPage'>
             <p>Fetching...</p>
-            {loadingDog} 
+            {fetchingDog} 
           </div>
           ) : null}
     </div>
@@ -219,4 +218,4 @@ const DashboardTwo = ({ updateState, currState }) => {
   );
 };
 
-export default DashboardTwo;
+export default Dashboard;

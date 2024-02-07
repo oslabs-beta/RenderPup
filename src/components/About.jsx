@@ -4,6 +4,7 @@ import Charmie from '../../public/Charmie.jpeg';
 import Tanner from '../../public/Tanner.jpeg';
 import Ariel from '../../public/Ariel.jpeg';
 import Vicky from '../../public/Vicky.jpeg';
+import renderpup from '../../public/renderpup.png';
 
 const About = () => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ const About = () => {
   }
     return (
         <div>
+
           <button 
             onClick={handleDashboard} 
             style={{
@@ -25,9 +27,36 @@ const About = () => {
           >
             Back to Dashboard
           </button>
+          <br/>
+          {/* renderpup 'about info' with CSS */}
+            {/* sorry i did most of the CSS on the same file :') */}
+          <div style={{ display: 'flex', alignItems: 'center', marginTop: '20px', textAlign: 'left' }}>
+            <img src={renderpup} alt="renderpup" style={{ width: '28em', height: '28em', marginRight: '20px' }} />
+            <div>
+              <h1 style={{ color: '#219ebc' }}>RenderPup</h1>
+              <p>
+                RenderPup is a web application designed to analyze Next.js websites by running various performance tests and providing insightful metrics. With RenderPup, users can input a URL for a Next.js website, and the application will conduct tests to measure important performance metrics such as time to first byte, first and largest contentful paint, network server latency, and bundle size.
+              </p>
 
-            <div id="meet" style={{ alignItems: 'center', textAlign: 'center' }}>
-                Meet the engineers!
+              <h3 style={{ color: '#219ebc', textAlign: 'center' }}>Description</h3>
+
+              <p>
+                RenderPup addresses the critical need for developers and website owners to understand the performance characteristics of their Next.js websites. By providing comprehensive metrics, RenderPup enables users to identify potential bottlenecks and optimize their websites for better user experience and search engine rankings.
+              </p>
+
+              <h3 style={{ color: '#219ebc', textAlign: 'center' }}>Key Features</h3>
+
+              <ul style={{ listStyleType: 'none', padding: 0 }}>
+                <li><strong>Performance Testing</strong>: RenderPup conducts various tests to assess the performance of Next.js websites.</li>
+                <li><strong>Real-Time Metric Analysis</strong>: It provides detailed metrics including time to first byte, first and largest contentful paint, network server latency, and bundle size.</li>
+                <li><strong>User-friendly Interface</strong>: RenderPup features a simple and intuitive interface, making it easy for users to input URLs and view performance metrics.</li>
+                <li><strong>Dashboard</strong>: A user-friendly dashboard to visualize performance metrics and gain actionable insights.</li>
+              </ul>
+            </div>
+          </div>
+
+            <div id="meet" style={{ alignItems: 'center', textAlign: 'center' }}> <br/> <br/>
+            <h1 style={{ color: '#219ebc' }}>Meet the engineers!</h1>
             </div>
             <br/>
             <br/>
