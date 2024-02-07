@@ -63,25 +63,25 @@ Running The Application
 1.  Create a new user by clicking on the "Don't have an account? Sign up!" button near the bottom right of the "Sign In" button:
 
 <p align="center">
-    <img src='./renderpup/public/Sign_Up.gif'/>
+    <img src='./public/Sign_Up.gif'/>
 </p>
 
 2.  Once signed up, use the login in credentials you just created to log in to your dashboard:
 
 <p align="center">
-    <img src='./renderpup/public/Login_In.gif'/>
+    <img src='./public/Login_In.gif'/>
 </p>
 
 3.  To begin searching performance metrics, input a web application url in the empty text input bar, followed by pressing the "Go Fetch" button directly to the right:
 
 <p align="center">
-    <img src='./renderpup/public/Check_Url.gif'/>
+    <img src='./public/Check_Url.gif'/>
 </p>
 
 4.  View any web application url performance metrics previously searched by clicking the "Previous Metrics" button in the top right corner inside of the navigation bar:
 
 <p align="center">
-    <img src='./renderpup/public/Fetch_Metrics.gif'/>
+    <img src='./public/Fetch_Metrics.gif'/>
 </p>
 
 -  To view updated performance metrics charts/data, navigate to the intended url in your "Previous Metrics" tab, followed by an additional run on said url in the input bar.  This will show the most recent metrics in combination with previous runs on said url for comparison.
@@ -91,7 +91,7 @@ Running The Application
 5.  Once you have completed your work with the application, you may sign out using the "Sign Out" button in the top right corner on the navbar.  This will sign you out and lead you back to the log in page.
 
 <p align="center">
-    <img src='./renderpup/public/Sign_Out.gif'/>
+    <img src='./public/Sign_Out.gif'/>
 </p>
 
 ## How to Contribute
