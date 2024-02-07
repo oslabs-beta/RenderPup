@@ -68,15 +68,22 @@ userController.verifyUser = async (req, res, next) => {
   }
 
   userController.deleteCookie = (req, res, next) => {
-    //retrieve the 'token' cookie from the request
+    //retrieve the 'token' and 'userId' cookie from the request
     const token = req.cookies.token;
-    //clear the 'token' cookie if it exists
+    const userId = req.cookies.userId;
+    //clear the 'token' and 'userId' cookie if it exists
     if (token) {
-    res.clearCookie('token', {
+    res.clearCookie('token',{
       httpOnly: true,
       secure: true
-    })
-   }  
+      });
+    }
+    if (userId) {
+      res.clearCookie('userId',{
+        httpOnly: true,
+        secure: true
+      });
+    }
     //pass control to the next middleware function
     return next();
   }
