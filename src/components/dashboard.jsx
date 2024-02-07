@@ -8,9 +8,13 @@ import runningDog from '../../public/runningDog.gif';
 
 const Dashboard = ({ updateState, currState }) => {
   const [open, setOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null); // For controlling the position of the dropdown
+  // use state hook to control the position of the dropdown on 'Fetch Metrics' button in navbar
+  const [anchorEl, setAnchorEl] = useState(null); 
+  // use state hook to handle receiving peformance metrics data 
   const [loading, setLoading] = useState(false);
+  //use state hook to update url's 
   const [urlList, setUrls] = useState(new Set());
+  //use navigate hook to navigate between different react components 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,6 +25,7 @@ const Dashboard = ({ updateState, currState }) => {
       .then(data => {
         let newUrl
         const uniqueUrls = new Set()
+        // update url's not to include '/' with each query
         for (const url of data.urls) {
           if (url.url[url.url.length - 1] === '/') {
             const tempArr = url.url.split('')
@@ -38,17 +43,24 @@ const Dashboard = ({ updateState, currState }) => {
     sessionStorage.setItem("loggedIn", '/dashboard')
   }, [currState]);
 
+  //handleOpen function opens list of user's queries saved from database on 'fetch metrics' button on navbar
   const handleOpen = (event) => {
     setAnchorEl(event.currentTarget);
     setOpen(!open);
   };
-
+  //handleOpen function closes list of user's queries saved from database on 'fetch metrics' button on navbar
   const handleClose = () => {
     setAnchorEl(null);
     setOpen(false);
   };
 
+ // handleAbout function = functionality to redirect user to logout component when clicking 'About' on navbar
+  const handleAbout = () => {
+    navigate('/about');
+  }
+  // handleSignout function = functionality to redirect user to logout component when clicking 'Sign Out' on navbar
   const handleSignOut = () => {
+    // navigate to logout component 
     navigate('/logout');
   }
 
@@ -56,15 +68,16 @@ const Dashboard = ({ updateState, currState }) => {
 
   const urls = Array.from(urlList)
   for (let i = 0; i < urls.length; i++) {
-    // buttons.push(<li className="site-name"></li>)
     buttons.push(<MenuItem onClick={() => handleWebsite(`${urls[i]}`)} key={crypto.randomUUID()}>{`${urls[i]}`}</MenuItem>)
   }
 
+  // handles logic when a user clicks on anything in the dashboard related to grabbing existing data 
+    // ex. saved metrics from user when clicking 'FETCH METRICS', querying metrics from new websites when clicking 'GO FETCH' 
   const handleWebsite = async (url) => {
     const data = await getExistingData(url)
-    // setOpen(false);
   };
 
+  // Handle fetching new data from server
   function getNewData() {
     setLoading(true);
     //grabs data from search bar and clears it
@@ -112,8 +125,9 @@ const Dashboard = ({ updateState, currState }) => {
       });
   }
 
+  // Handle fetching existing data from server based on URL
   function getExistingData(currUrl) {
-    // make a http request to /api
+    // make a http request to /api/urls
     fetch('/api/urls', {
       method: 'POST',
       headers: {
@@ -141,6 +155,9 @@ const Dashboard = ({ updateState, currState }) => {
   const fetchingDog = <img id='runningDog' src={runningDog}></img>;
 
   return (
+    //div testid for testing dashboardTwo
+    <div data-testid='app-component'>
+      {/* MUI functionality to render navbar */}
     <div>
       <AppBar position="static" sx={{ bgcolor: '#0496FA'}}>
         <Container maxWidth="xl">
@@ -151,6 +168,9 @@ const Dashboard = ({ updateState, currState }) => {
             <Typography variant="h6" sx={{ flexGrow: 1 }}>
               RenderPup
             </Typography>
+            <Button color="inherit" onClick={handleAbout}>
+              About
+            </Button>
             <Button color="inherit" onClick={handleOpen}>
               Fetch Metrics
             </Button>
@@ -168,7 +188,7 @@ const Dashboard = ({ updateState, currState }) => {
         </Container>
       </AppBar>
 
-      {/* <h1> RenderPup</h1> */}
+  
      <div className="slogan">
       
       <img id='dogFetchingBall' src={image_png} alt="dogFetchingBall" />
@@ -176,7 +196,7 @@ const Dashboard = ({ updateState, currState }) => {
       </div>
       
       <div className="logoAndSearch">
-      {/* <img id='logo' src={renderpup} alt="logo" /> */}
+      
       <form className='app-form'>
         <label>
           <input className='app-input-field' type='text' name='url' placeholder="Search URL"/>
@@ -186,13 +206,14 @@ const Dashboard = ({ updateState, currState }) => {
         <button className='go-fetch-bttn' type='button' onClick={getNewData}>Go Fetch</button>
 
       </div>
-      
+      {/* functionality that renders corgi gif after hitting 'fetch' buton */}
         { loading ? (
           <div id='loadingPage'>
             <p>Fetching...</p>
             {fetchingDog} 
           </div>
           ) : null}
+    </div>
     </div>
   );
 };

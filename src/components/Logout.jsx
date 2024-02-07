@@ -20,11 +20,12 @@ const Logout = () => {
         method: 'POST',
         headers: { 'Content-type': 'application/json' },
       });
-
+      // If HTTP response status is within 200 to 299 (inclusive) range, .ok will be true, indicating successful request 
       if (response.ok) {
         const responseData = await response.json();
 
         if (responseData.success) {
+          // setMessage function that reassigns initial state to string below 
           sessionStorage.clear()
           setMessage('Logging out... goodbye!');
           
@@ -50,6 +51,7 @@ const Logout = () => {
   }, [navigate]);
 
   return (
+    //render waving dog gif & message from useState hook 
     <div id= "logoutPage">
       { wavingDoggo }
      { message }

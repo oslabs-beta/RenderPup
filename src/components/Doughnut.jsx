@@ -1,10 +1,13 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 
+// donut chart template from chart.js 
 const doughnutChart = (props) => {
+  //pulls bundle size out of props
   const chartData = props.data.data[props.data.data.length - 1].bs;
-  const keys = Object.keys(chartData);
-  const values = Object.values(chartData);
+  //grabs keys and values from bundle size data and stores them as arrays
+  const keys = Object.keys(chartData)
+  const values = Object.values(chartData)
   const backgroundColors = [
     'rgba(7,123,247,1)',
     'rgba(255,99,132,1)',
@@ -14,36 +17,42 @@ const doughnutChart = (props) => {
     '#219ebc',
     '#023047',
     '#ffb703',
-    '#fb8500',
+    '#fb8500'
     // Add more colors as needed
-  ];
+];
   const config = {
-    labels: keys.map((item) => item),
+    //sets labels from the keys array
+    labels: keys.map(item => item),
     datasets: [
       {
-        labels: keys.map((item) => item),
-        data: values.map((item) => item),
+        //sets labels from the keys array
+        labels: keys.map(item => item),
+        //sets dataset from values array
+        data: values.map(item => item),
         backgroundColor: backgroundColors,
         borderWidth: 1,
-        borderAlign: 'center',
-      },
+        borderAlign: 'center'
+      }
     ],
-  };
+  }
   const options = {
-    plugins: {
-      legend: {
-        title: {
-          display: true,
-          text: 'Bundle Size', // Your chart title
-          // position: 'bottom'
+      plugins: {
+        legend: {
+          title: {
+            display: true,
+            text: 'Bundle Size (bytes)', // Your chart title
         },
-        position: 'bottom',
-      },
-    },
-  };
+          position: 'bottom' //changes lengend to below the chart
+        }
+      }
+    };
   return (
+    // chart.js functionality to render bundle sizes on donut chart 
     <div className='graphSizes'>
-      <Doughnut data={config} options={options} />
+    <Doughnut
+      data={config}
+      options = {options}
+    />
     </div>
   );
 };
