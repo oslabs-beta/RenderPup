@@ -7,9 +7,9 @@ import Vicky from '../../public/Vicky.jpeg';
 
 const About = () => {
   const navigate = useNavigate();
-  // handleSignout function = functionality to redirect user to logout component when clicking 'Sign Out' on navbar
+  // handleSignout function = functionality to redirect user to dashboard component on about page
   const handleDashboard = () => {
-    // navigate to logout component 
+    // navigate to dashboard component 
     navigate('/dashboard');
   }
     return (
