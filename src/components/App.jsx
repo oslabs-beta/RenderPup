@@ -8,7 +8,7 @@ import LineChartNSL from './LineChartNSL';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import Logout from './Logout';
-import DashboardTwo from './DashboardTwo';
+import Dashboard from './dashboard';
 import About from './About';
 
 
@@ -50,7 +50,7 @@ return (
         <Route path="/" element={<>{currentForm === "login" ? ( <SignIn onFormSwitch={toggleForm} /> ) : ( <SignUp onFormSwitch={toggleForm} />)}</> } />
         <Route path="/dashboard" element={
           <div className="drop-down-menu">
-            <DashboardTwo updateState={setData} currState={chartData} />
+            <Dashboard updateState={setData} currState={chartData} />
             <br />
             <div id='graphs'>
               {<Bargraph data={chartData} convertDate={convertDate} />}

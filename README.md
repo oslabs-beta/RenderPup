@@ -141,7 +141,7 @@ Thank you for contributing to RenderPup! Your contributions help improve the per
   <table>
     <tr>
       <td align='center'>
-        <img src='renderpup/public/Tanner.jpeg' width='140px' alt=''/>
+        <img src='public/Tanner.jpeg' width='140px' alt=''/>
         <br />
         <b>Tanner Robertson<b>
         <br />
@@ -149,7 +149,7 @@ Thank you for contributing to RenderPup! Your contributions help improve the per
         <a href='https://www.linkedin.com/in/tanner-robertson-3343a42a2/'>LinkedIn</a>
       </td>
       <td align='center'>
-        <img src='renderpup/public/Ariel.jpeg' width='140px' alt=''/>
+        <img src='public/Ariel.jpeg' width='140px' alt=''/>
         <br />
         <b>Ariel Maor<b>
         <br />
@@ -157,7 +157,7 @@ Thank you for contributing to RenderPup! Your contributions help improve the per
         <a href='https://www.linkedin.com/in/ariel-maor-aa419220/'>LinkedIn</a>
       </td>
       <td align='center'>
-        <img src='renderpup/public/Charmie.jpeg' width='140px' alt=''/>
+        <img src='public/Charmie.jpeg' width='140px' alt=''/>
         <br />
         <b>Charmie Dubongco<b>
         <br />
@@ -165,11 +165,11 @@ Thank you for contributing to RenderPup! Your contributions help improve the per
         <a href='https://www.linkedin.com/in/charmie-d-17293011b/'>LinkedIn</a>
       </td>
       <td align='center'>
-        <img src='renderpup/public/Vicky.jpeg' width='140px' alt=''/>
+        <img src='public/Tanner.jpeg' width='140px' alt=''/>
         <br />
         <b>Vicky Hoang<b>
         <br />
-        <a href='https://github.com/vkhoang'>GitHub</a>
+        <a href=''>GitHub</a>
         <a href='https://www.linkedin.com/in/vkhoang/'>LinkedIn</a>
       </td>
     </tr>

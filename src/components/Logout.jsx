@@ -9,7 +9,7 @@ const Logout = () => {
   // use useState hook to render a message before being redirected to login page 
   const [ message, setMessage ] = useState('');
   // invoke wavingDoggo outside useEffect so return statement can refer to it
-  const wavingDoggo = <img id='loadingDog' src={wavingdoggo}></img>;
+  const wavingDoggo = <img id='logoutDog' src={wavingdoggo}></img>;
 
   useEffect(() => {
   const handleLogout = async () => {
