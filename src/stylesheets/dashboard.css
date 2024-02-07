@@ -1,0 +1,130 @@
+body {
+  background-image:radial-gradient(ellipse at center, rgb(234, 246, 255) 0%, rgb(220, 246, 255) 35%, #54cdf9 100%);
+  background-attachment: fixed;
+  font: 1em monaco;
+}
+
+h1{
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.slogan {
+  display: flex;
+  align-items:center;
+  justify-content: center;
+
+}
+
+/* ------- app form ------- */
+.app-form {
+  text-align: center;
+}
+
+.app-input-field {
+  height: 2em;
+  width: 150%;
+  margin-left: 1em;
+  margin-right: 1em;
+  border-radius: 0.4em;
+  border: solid;
+  border-color: rgb(152, 152, 157);
+}
+
+
+.go-fetch-bttn {
+  background-color: #023047;
+  color: white;
+  border-radius: 0.4em;
+  padding: 0.6em;
+  border: none;
+  margin-left: 9em;
+}
+
+button {
+  background-color: #023047;
+  color: white;
+  border-radius: 0.4em;
+  padding: 0.6em;
+  margin: 0.6em;
+  border: none;
+  text-align: right;
+}
+/* ------------------------ */
+
+#dogFetchingBall {
+  width: 5%;
+  margin-right: 0.5em;
+}
+
+.graphSizes {
+  width: 50%;
+}
+
+.dropdown {
+  text-align: center;
+}
+
+.firstSite {
+  list-style: none;
+}
+
+#graphs {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.saved-urls {
+  background-color: #219ebc;
+}
+
+#logo {
+    height: auto; 
+    width: auto; 
+    max-width: 50px; 
+    max-height: 50px;
+  
+}
+
+.logoAndSearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#loadingPage {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+#runningDog {
+  height: 4em;
+}
+
+#logoutPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+}
+
+#logoutDog {
+  height: 20vh; /* Set the height of the GIF to 20% of the viewport height */
+  width: auto; /* Maintain the aspect ratio */
+}
+
+#about {
+  height: 200px;
+  width: 200px;
+}
+
+#aboutimage {
+  height: 22px;
+}
+
+#aboutimage:hover {
+  transform: scale(0.8); 
+}
+
