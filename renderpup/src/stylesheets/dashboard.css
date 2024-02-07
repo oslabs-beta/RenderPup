@@ -119,3 +119,16 @@ button {
   width: auto; /* Maintain the aspect ratio */
 }
 
+#about {
+  height: 200px;
+  width: 200px;
+}
+
+#aboutimage {
+  height: 22px;
+}
+
+#aboutimage:hover {
+  transform: scale(0.8); 
+}
+

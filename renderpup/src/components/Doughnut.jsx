@@ -1,11 +1,15 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 
+// donut chart template from chart.js 
 const doughnutChart = (props) => {
+  // chartData contains keys & values
     const chartData = props.data.data[props.data.data.length - 1].bs;
-    console.log(chartData)
+    //keys are the website URL's 
     const keys = Object.keys(chartData)
+    //values are the bundle sizes
     const values = Object.values(chartData)
+    console.log('VALUES', values)
     console.log(keys, values)
     const backgroundColors = [
       'rgba(7,123,247,1)',
@@ -23,7 +27,10 @@ const doughnutChart = (props) => {
         labels: keys.map(item => item),
         datasets: [
           {
+            // iterate through keys & values to show individual key on donut chart 
+            // labels = x axis 
             labels: keys.map(item => item),
+            // data = y axis 
             data: values.map(item => item),
             backgroundColor: backgroundColors,
             borderWidth: 1,
@@ -36,14 +43,15 @@ const doughnutChart = (props) => {
           legend: {
             title: {
               display: true,
-              text: 'Bundle Size', // Your chart title
-              // position: 'bottom'
+              // chart title
+              text: 'Bundle Size'
           },
             position: 'bottom'
           }
         }
     };
   return (
+    // chart.js functionality to render bundle sizes on donut chart 
     <div className='graphSizes'>
     <Doughnut
       data={config}

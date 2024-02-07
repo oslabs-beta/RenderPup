@@ -1,5 +1,5 @@
 // import * as React from 'react';
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -9,19 +9,19 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import renderpup from '../../public/renderpup.png';
 
+// MUI functionality to add copyright functionality beneath signin form
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-      https://RenderPup.com/
+      https://renderpup.com/
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -29,56 +29,37 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
 
+// MUI functionality that generates sign form theme
 const defaultTheme = createTheme();
 
 export default function SignIn({onFormSwitch}) {
   //useNavigate hook to navigate to different react components
   const navigate = useNavigate();
-  // const [redirectUrl, setRedirectUrl] = useState(null);
 
-  // useEffect(() => {
-  //   console.log('here?')
-  //   const fetchData = async () => {
-  //     console.log('in fetchdata')
-  //     try {
-  //       const response = await fetch('/dashboard');
-  //       const data = await response.json();
-  //       console.log('data!!!:', data);
-  //       console.log('here!!!')
-
-  //       if (data === '/'){
-  //         console.log('data.redirect:', data);
-  //         //redirects back to login
-  //         history(`${data}`);
-  //       }
-  //     } catch (error) {
-  //       console.error('Error fetching dashboard:', error);
-  //     }
-  //   };
-
-  //   fetchData();
-  //   console.log('meeeeee');
-  // }, [redirectUrl]);
-
+  // handle submit functionality to redirect to dashboard 
   const handleSubmit = (event) => {
+     // event to prevent entire page from being reloaded 
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    // fetch req from endpoint that takes in username/pw data
     fetch('/api/login', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
+      //expect login data to to be in an object format that's extracted from data.get object 
       body: JSON.stringify(
         {
           username: data.get('username'),
           password: data.get('password')
         })
       })
+      // 
       .then(async data => {
+        // parse response from fetch req into json format 
         const response = await data.json();
+        // if there's sa truthy response (correct username/pw), redirect to dashboard component using usenavigate hook
         if (response === true) {
           navigate('/dashboard')
-          // onFormSwitch
         } else {
           console.log('Incorrect username or password');
         }
@@ -86,11 +67,11 @@ export default function SignIn({onFormSwitch}) {
       .catch(err => {
         console.error(err, 'error when logging in')
       });
-    // history.navigate.push('/dashboard')
     
   };
 
   return (
+    // MUI functionality for signin form
     <div>
       <ThemeProvider theme={defaultTheme}>
         <Container component="main" maxWidth="xs">
@@ -147,22 +128,15 @@ export default function SignIn({onFormSwitch}) {
               >
                 Sign In
               </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
+                <Grid container justifyContent="flex-end" item>
 
                   <Link href="#" variant="body2">
                   <span onClick={() => onFormSwitch('signup')}>
                   {"Don't have an account? Sign up!"}
                   </span>
                   </Link>
-      
+
                 </Grid>
-              </Grid>
             </Box>
           </Box>
           <Copyright sx={{ mt: 8, mb: 4 }} />

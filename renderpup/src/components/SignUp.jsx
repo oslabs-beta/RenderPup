@@ -3,24 +3,22 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import renderpup from '../../public/renderpup.png';
 
+// MUI functionality to add copyright functionality beneath signup form
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        https://RenderPup.com/
+        https://renderpup.com/
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -28,26 +26,24 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
+// MUI functionality that generates signup form theme
 const defaultTheme = createTheme();
 
+// signup functionality with onFormSwitch prop drilled from App to allow toggling signin/signup page 
 export default function SignUp({onFormSwitch}) {
+
+  //useNavigate hook to navigate between react components 
   const history = useNavigate();
 
-  
+  // handleSignup functionality to input new user data to database, then redirect to SignIn component 
   const handleSignup = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    // history.navigate.push('/dashboard')
-    // history('/dashboard')
-  // };
-
-
     fetch('/api/signup', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
+      // takes user data through data object 
       body: JSON.stringify(
         {
           username: data.get('username'),
@@ -57,29 +53,17 @@ export default function SignUp({onFormSwitch}) {
           email: data.get('email')
         })
       })
-      // .then(data => {
-      //   return data.json()
-      // })
       .then(response => {
         return response.json();
       })
       .then(data => {
         history('/signin')
       })
-
-        // .then(response => {
-        //   //then checks of status code is ok (200-299); if not, throw 404 error
-        //   if (!response.ok) {
-        //     console.error(`Network response is not rendering, ${response.status} error`)
-        //     throw new Error('response not okay')
-        //   }
-        //   return response.json();
-        // })
-
-        .catch(err => console.error(err, 'Signup not successfull'))
+      .catch(err => console.error(err, 'Signup not successfull'))
   };
 
   return (
+    // MUI functionality to render signup form theme 
     <div>
       <ThemeProvider theme={defaultTheme}>
         <Container component="main" maxWidth="xs">
@@ -156,12 +140,7 @@ export default function SignUp({onFormSwitch}) {
                     autoComplete="new-password"
                   />
                 </Grid>
-                {/* <Grid item xs={12}>
-                  <FormControlLabel
-                    control={<Checkbox value="allowExtraEmails" color="primary" />}
-                    label="I want to receive inspiration, marketing promotions and updates via email."
-                  />
-                </Grid> */}
+                
               </Grid>
               <Button
                 type="submit"
