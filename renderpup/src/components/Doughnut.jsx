@@ -1,6 +1,7 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 
+// donut chart template from chart.js 
 const doughnutChart = (props) => {
   //pulls bundle size out of props
   const chartData = props.data.data[props.data.data.length - 1].bs;
@@ -46,6 +47,7 @@ const doughnutChart = (props) => {
       }
     };
   return (
+    // chart.js functionality to render bundle sizes on donut chart 
     <div className='graphSizes'>
     <Doughnut
       data={config}
