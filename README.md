@@ -63,7 +63,7 @@ npm run build
 npm start
 ```
 
-Setting up PostgreSQL Database 
+## Setting up PostgreSQL Database 
 
 1.  Create a 'Users' table with columns '_id', 'username', 'password', 'firstName', 'lastName' and 'email'.
  - '_id' will act as the primary key for the 'Users' table
@@ -78,7 +78,7 @@ Setting up PostgreSQL Database
   <img src='./public/data_model.png'/>
 </p>
 
-Running The Application
+## Running The Application
 
 1.  Create a new user by clicking on the "Don't have an account? Sign up!" button near the bottom right of the "Sign In" button:
 
