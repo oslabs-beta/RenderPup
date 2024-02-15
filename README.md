@@ -63,6 +63,21 @@ npm run build
 npm start
 ```
 
+Setting up PostgreSQL Database 
+
+1.  Create a 'Users' table with columns '_id', 'username', 'password', 'firstName', 'lastName' and 'email'.
+ - '_id' will act as the primary key for the 'Users' table
+2.  Create a 'Metrics' table with columns '_id', 'user_id', 'url', 'date', 'ttfb', 'fcp', 'lcp', 'nsl', and 'bs'
+- '_id' will act as the primary key for the 'Metrics' table
+- 'user_id' will act as the foreign key to the 'Users' table 
+3.  Create a 'Diagnostics' table with columns '_id', 'user_id', 'performance_score', 'diagnostics_info', and 'url'
+-  '_id' will act as the primary key
+-  'user_id' will act as the foreign key to the 'Users' table
+
+<p align="center">
+  <img src='./public/data_model.png'/>
+</p>
+
 Running The Application
 
 1.  Create a new user by clicking on the "Don't have an account? Sign up!" button near the bottom right of the "Sign In" button:
