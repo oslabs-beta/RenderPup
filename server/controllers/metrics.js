@@ -65,8 +65,9 @@ metricsController.saveMetrics = async (req, res, next) => {
   const { url } = req.body
   const { ttfb, fcp, lcp, nsl, bs } = res.locals.metrics
   const performanceScore = res.locals.performanceScore
-  // const diagnostics = res.locals.diagnostics
-  const opportunities = res.locals.opportunities
+  // lighthouse names diagnostics as opportunities, renaming to diagnotics
+  const diagnostics = res.locals.diagnostics
+  // const opportunities = res.locals.opportunities
   res.locals.metrics.date = new Date()
   await db.query('INSERT INTO metrics (url, user_id, ttfb, fcp, lcp, nsl, bs) ' + `VALUES ('${url}', ${req.cookies.userId}, ${ttfb}, ${fcp}, ${lcp}, ${nsl}, '${JSON.stringify(bs)}')`);
   next()
